@@ -27,7 +27,7 @@ test('reset password link can be requested', function () {
     Notification::assertSentTo($user, ResetPassword::class);
 });
 
-test('reset password screen can be rendered', function () {
+test('admin reset password screen can be rendered', function () {
     Notification::fake();
 
     $user = User::factory()->create();
@@ -35,12 +35,18 @@ test('reset password screen can be rendered', function () {
     $this->post('/admin/forgot-password', ['email' => $user->email]);
 
     Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-        $response = $this->get('/reset-password/'.$notification->token);
+        $response = $this->get('/admin/reset-password/'.$notification->token);
 
         $response->assertStatus(200);
 
         return true;
     });
+});
+
+test('legacy reset-password path redirects to admin route', function () {
+    $response = $this->get('/reset-password/sample-token?email=test@example.com');
+
+    $response->assertRedirect('/admin/reset-password/sample-token?email=test%40example.com');
 });
 
 test('password can be reset with valid token', function () {
@@ -51,7 +57,7 @@ test('password can be reset with valid token', function () {
     $this->post('/admin/forgot-password', ['email' => $user->email]);
 
     Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
-        $response = $this->post('/reset-password', [
+        $response = $this->post('/admin/reset-password', [
             'token' => $notification->token,
             'email' => $user->email,
             'password' => 'password',
@@ -59,8 +65,11 @@ test('password can be reset with valid token', function () {
         ]);
 
         $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(route('login'));
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->component('Auth/ResetPassword')
+                ->where('resetComplete', true)
+            );
 
         return true;
     });

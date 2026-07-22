@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -29,11 +30,19 @@ Route::middleware('guest')->group(function () {
     // Legacy Breeze path → admin forgot password.
     Route::redirect('forgot-password', '/admin/forgot-password');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    Route::get('admin/reset-password/{token}', [NewPasswordController::class, 'create'])
         ->name('password.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
+    Route::post('admin/reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+
+    // Legacy Breeze path → admin reset password (preserve token + query).
+    Route::get('reset-password/{token}', function (string $token, Request $request) {
+        return redirect()->route('password.reset', [
+            'token' => $token,
+            ...$request->query(),
+        ]);
+    });
 });
 
 Route::middleware('auth')->group(function () {

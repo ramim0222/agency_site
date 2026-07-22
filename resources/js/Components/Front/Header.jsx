@@ -4,7 +4,11 @@ import { Menu, X } from "lucide-react";
 import { EASE, ScrollTrigger, gsap, useGSAP } from "@/lib/motion";
 import { brand, primaryNav } from "@/data/front/home";
 
-export default function Header() {
+/**
+ * Marketing header. Pass `minimal` on post-conversion pages (thank-you) to
+ * drop the quote CTA and show a quieter nav — logo + home only.
+ */
+export default function Header({ minimal = false }) {
     const headerRef = useRef(null);
     const panelRef = useRef(null);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,6 +19,11 @@ export default function Header() {
             if (!header) return;
 
             const solid = header.querySelector("[data-header-solid]");
+            if (minimal) {
+                gsap.set(solid, { opacity: 1 });
+                return;
+            }
+
             gsap.set(solid, { opacity: 0 });
 
             ScrollTrigger.create({
@@ -30,7 +39,7 @@ export default function Header() {
                 },
             });
         },
-        { scope: headerRef }
+        { scope: headerRef, dependencies: [minimal] }
     );
 
     useGSAP(
@@ -76,63 +85,76 @@ export default function Header() {
                     </span>
                 </Link>
 
-                <nav className="hidden items-center gap-8 lg:flex">
-                    {primaryNav.map((item) => (
-                        <NavItem key={item.label} item={item} />
-                    ))}
-                </nav>
-
-                <div className="hidden items-center gap-5 lg:flex">
+                {minimal ? (
                     <Link
-                        href="/contact"
+                        href="/"
                         className="font-mono text-[13px] uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 rounded-sm"
                     >
-                        Contact
+                        Back to home
                     </Link>
-                    <Link
-                        href="/contact"
-                        className="rounded-md bg-front-ember px-4 py-2 text-[13px] font-semibold text-front-ember-ink transition-all duration-200 hover:bg-front-ember-soft active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 focus-visible:ring-offset-2 focus-visible:ring-offset-front-graphite"
-                    >
-                        Get a Quote
-                    </Link>
-                </div>
+                ) : (
+                    <>
+                        <nav className="hidden items-center gap-8 lg:flex">
+                            {primaryNav.map((item) => (
+                                <NavItem key={item.label} item={item} />
+                            ))}
+                        </nav>
 
-                <button
-                    type="button"
-                    onClick={() => setMobileOpen((v) => !v)}
-                    aria-expanded={mobileOpen}
-                    aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                    className="flex size-11 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 lg:hidden"
-                >
-                    {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-                </button>
-            </div>
+                        <div className="hidden items-center gap-5 lg:flex">
+                            <Link
+                                href="/contact"
+                                className="font-mono text-[13px] uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 rounded-sm"
+                            >
+                                Contact
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className="rounded-md bg-front-ember px-4 py-2 text-[13px] font-semibold text-front-ember-ink transition-all duration-200 hover:bg-front-ember-soft active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 focus-visible:ring-offset-2 focus-visible:ring-offset-front-graphite"
+                            >
+                                Get a Quote
+                            </Link>
+                        </div>
 
-            <div
-                ref={panelRef}
-                style={{ display: "none" }}
-                className="relative border-b border-white/8 bg-front-graphite lg:hidden"
-            >
-                <nav className="front-container flex flex-col gap-1 py-4">
-                    {primaryNav.map((item) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="rounded-md px-2 py-3 text-[15px] text-white/85 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
+                        <button
+                            type="button"
+                            onClick={() => setMobileOpen((v) => !v)}
+                            aria-expanded={mobileOpen}
+                            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                            className="flex size-11 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 lg:hidden"
                         >
-                            {item.label}
-                        </a>
-                    ))}
-                    <Link
-                        href="/contact"
-                        onClick={() => setMobileOpen(false)}
-                        className="mt-3 rounded-md bg-front-ember px-4 py-3 text-center text-[15px] font-semibold text-front-ember-ink"
-                    >
-                        Get a Quote
-                    </Link>
-                </nav>
+                            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+                        </button>
+                    </>
+                )}
             </div>
+
+            {!minimal && (
+                <div
+                    ref={panelRef}
+                    style={{ display: "none" }}
+                    className="relative border-b border-white/8 bg-front-graphite lg:hidden"
+                >
+                    <nav className="front-container flex flex-col gap-1 py-4">
+                        {primaryNav.map((item) => (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                onClick={() => setMobileOpen(false)}
+                                className="rounded-md px-2 py-3 text-[15px] text-white/85 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
+                            >
+                                {item.label}
+                            </a>
+                        ))}
+                        <Link
+                            href="/contact"
+                            onClick={() => setMobileOpen(false)}
+                            className="mt-3 rounded-md bg-front-ember px-4 py-3 text-center text-[15px] font-semibold text-front-ember-ink"
+                        >
+                            Get a Quote
+                        </Link>
+                    </nav>
+                </div>
+            )}
         </header>
     );
 }

@@ -40,13 +40,16 @@ class ContactController extends Controller
 
         return redirect()
             ->route('thank-you')
-            ->with('leadName', $lead->name);
+            ->with('leadName', $lead->name)
+            ->with('fireConversion', true);
     }
 
     public function thankYou(): Response
     {
         return Inertia::render('Front/ThankYou', [
             'leadName' => session('leadName'),
+            // Pulled so a refresh doesn't re-fire the Meta Pixel Lead event.
+            'fireConversion' => (bool) session()->pull('fireConversion'),
         ]);
     }
 }

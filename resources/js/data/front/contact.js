@@ -67,9 +67,4 @@ export const timelineOptions = [
     { value: "flexible", label: "Flexible", hint: "Quality over a hard date" },
 ];
 
-export const thankYouPage = {
-    eyebrow: "Brief received",
-    headline: "Thanks — we'll be in touch.",
-    sub: "We read every submission. Expect a reply within one business day with clarifying questions or a scoping call.",
-    homeCta: { label: "Back to home", href: "/" },
-};
+// thank-you copy lives in data/front/thankYou.js

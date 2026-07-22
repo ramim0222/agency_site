@@ -50,4 +50,17 @@ return [
         'notify_webhook' => env('WHATSAPP_NOTIFY_WEBHOOK'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Meta (Facebook) Pixel
+    |--------------------------------------------------------------------------
+    |
+    | When set, the base pixel script loads site-wide and the thank-you page
+    | fires a Lead conversion event after a successful quote submit.
+    |
+    */
+    'facebook' => [
+        'pixel_id' => env('FACEBOOK_PIXEL_ID'),
+    ],
+
 ];

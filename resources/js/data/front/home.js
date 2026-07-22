@@ -176,4 +176,9 @@ export const footerLinks = {
         { label: "Blog", href: "/blog" },
         { label: "Contact", href: "/contact" },
     ],
+    legal: [
+        { label: "Terms", href: "/terms" },
+        { label: "Privacy", href: "/privacy" },
+        { label: "Refunds", href: "/refund-policy" },
+    ],
 };

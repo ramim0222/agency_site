@@ -40,6 +40,18 @@ Route::get('/careers', function () {
     return Inertia::render('Front/Careers');
 })->name('careers');
 
+Route::get('/terms', function () {
+    return Inertia::render('Front/Terms');
+})->name('terms');
+
+Route::get('/privacy', function () {
+    return Inertia::render('Front/Privacy');
+})->name('privacy');
+
+Route::get('/refund-policy', function () {
+    return Inertia::render('Front/RefundPolicy');
+})->name('refund-policy');
+
 Route::get('/faq', function () {
     return Inertia::render('Front/Faq');
 })->name('faq');

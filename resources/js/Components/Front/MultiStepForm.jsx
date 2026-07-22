@@ -34,14 +34,17 @@ function readAttribution() {
     };
 }
 
-const SERVICE_QUERY_VALUES = new Set([
-    "website",
-    "web_app",
-    "mobile_app",
-    "saas",
-]);
+/** Map marketing query aliases → form service_type values. */
+const SERVICE_QUERY_MAP = {
+    website: "website",
+    webapp: "web_app",
+    web_app: "web_app",
+    mobile: "mobile_app",
+    mobile_app: "mobile_app",
+    saas: "saas",
+};
 
-/** Prefill from /contact?product=&plan= or /contact?service=website */
+/** Prefill from /contact?product=&plan= or /contact?service=website|webapp */
 function readLeadContext() {
     if (typeof window === "undefined") {
         return { service_type: "", message: "" };
@@ -63,9 +66,9 @@ function readLeadContext() {
         };
     }
 
-    if (SERVICE_QUERY_VALUES.has(service)) {
+    if (SERVICE_QUERY_MAP[service]) {
         return {
-            service_type: service,
+            service_type: SERVICE_QUERY_MAP[service],
             message: "",
         };
     }

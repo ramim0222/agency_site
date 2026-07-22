@@ -115,4 +115,15 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Lead notification recipient
+    |--------------------------------------------------------------------------
+    |
+    | Address that receives new contact-form quote requests. Falls back to
+    | the global from address when unset.
+    |
+    */
+    'lead_notify_to' => env('LEAD_NOTIFY_EMAIL'),
+
 ];

@@ -35,4 +35,19 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | WhatsApp lead notifications
+    |--------------------------------------------------------------------------
+    |
+    | Optional webhook that receives a JSON payload whenever a new lead is
+    | created from the contact form. Point this at CallMeBot, Twilio, Make,
+    | n8n, or any WhatsApp Business API bridge. When empty, notifications
+    | are written to the application log instead.
+    |
+    */
+    'whatsapp' => [
+        'notify_webhook' => env('WHATSAPP_NOTIFY_WEBHOOK'),
+    ],
+
 ];

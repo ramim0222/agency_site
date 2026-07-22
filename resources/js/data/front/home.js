@@ -19,7 +19,7 @@ export function whatsappHref(message = whatsapp.message) {
 }
 
 export const primaryNav = [
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "/#services" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },

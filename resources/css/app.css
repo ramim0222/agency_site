@@ -26,6 +26,18 @@
     --color-front-ember: #d98e4a;
     --color-front-ember-soft: #e9b17e;
     --color-front-ember-ink: #4a2f14;
+
+    /* Admin / Auth shell — cool zinc cockpit, deliberately not marketing ember */
+    --color-admin-canvas: #0c0e12;
+    --color-admin-panel: #151922;
+    --color-admin-panel-2: #1c212c;
+    --color-admin-ink: #e8eaed;
+    --color-admin-muted: #8b929e;
+    --color-admin-line: rgba(232, 234, 237, 0.1);
+    --color-admin-accent: #4a9b8c;
+    --color-admin-accent-ink: #061512;
+    --color-admin-danger: #d4776b;
+
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -208,4 +220,27 @@
   .front-marquee-track {
     animation: none;
   }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Admin / Auth utilities — internal tool shell                           */
+/* ---------------------------------------------------------------------- */
+
+.admin {
+  font-family: var(--font-sans);
+  color: var(--color-admin-ink);
+  background-color: var(--color-admin-canvas);
+}
+
+.admin-dotgrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image: radial-gradient(
+    rgba(232, 234, 237, 0.09) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
 }

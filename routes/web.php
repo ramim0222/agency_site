@@ -15,11 +15,16 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 Route::get('/thank-you', [ContactController::class, 'thankYou'])->name('thank-you');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return Inertia::render('SuperAdmin/Dashboard');
+    })->name('admin.dashboard');
+
+    // Legacy Breeze dashboard name — send authenticated users to the ops desk.
+    Route::get('/dashboard', function () {
+        return redirect()->route('admin.dashboard');
+    })->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

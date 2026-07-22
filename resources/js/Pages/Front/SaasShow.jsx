@@ -1,21 +1,64 @@
+import { useRef } from "react";
 import { Head, Link } from "@inertiajs/react";
 import Header from "@/Components/Front/Header";
 import Footer from "@/Components/Front/Footer";
+import ProductHeader from "@/Components/Front/ProductHeader";
+import ScreenshotGallery from "@/Components/Front/ScreenshotGallery";
+import FeatureList from "@/Components/Front/FeatureList";
+import PlanComparisonTable from "@/Components/Front/PlanComparisonTable";
+import FaqAccordion from "@/Components/Front/FaqAccordion";
+import RelatedProducts from "@/Components/Front/RelatedProducts";
+import ContactAboutPlanButton from "@/Components/Front/ContactAboutPlanButton";
+import WhatsAppButton from "@/Components/Front/WhatsAppButton";
+import Reveal from "@/Components/Front/Reveal";
+import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 import {
-    categoryLabels,
-    formatStartingPrice,
-    getProductBySlug,
+    getProductDetail,
+    getRelatedProducts,
+    whatsappMessageForProduct,
 } from "@/data/front/saas";
 
 /**
- * Lightweight product landing so /saas/{slug} links resolve.
- * Full product detail ships in a later Front prompt.
+ * SaaS product detail — static brief, informational plans, lead CTAs.
+ * Skills: frontend-design (kiln product brief), taste-design (plan columns),
+ * gsap-react (hero + FAQ), ui-ux-pro-max (empty states, contact query context).
  */
 export default function SaasShow({ slug }) {
-    const product = getProductBySlug(slug);
-    const category = product
-        ? (categoryLabels[product.category] ?? product.category)
-        : null;
+    const heroScope = useRef(null);
+    const product = getProductDetail(slug);
+    const related = getRelatedProducts(slug, 3);
+    const recommendedPlan =
+        product?.plans?.find((plan) => plan.recommended) ??
+        product?.plans?.[0] ??
+        null;
+
+    useGSAP(
+        () => {
+            if (!heroScope.current || !product) return;
+            const bits = gsap.utils.toArray(
+                "[data-saas-detail-hero]",
+                heroScope.current
+            );
+
+            if (prefersReducedMotion()) {
+                gsap.set(bits, { opacity: 1, y: 0 });
+                return;
+            }
+
+            gsap.fromTo(
+                bits,
+                { opacity: 0, y: 18 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    stagger: 0.07,
+                    ease: EASE.out,
+                }
+            );
+        },
+        { scope: heroScope, dependencies: [slug] }
+    );
 
     if (!product) {
         return (
@@ -39,61 +82,73 @@ export default function SaasShow({ slug }) {
     }
 
     return (
-        <div className="front min-h-[100dvh] bg-front-graphite">
+        <div className="front bg-front-graphite">
             <Head title={`${product.name} — Kiln SaaS`}>
                 <meta name="description" content={product.tagline} />
             </Head>
 
             <Header />
 
-            <main className="front-container pt-28 pb-20 lg:pt-36">
-                <Link
-                    href={`/saas/category/${product.category}`}
-                    className="font-mono text-[12px] uppercase tracking-[0.1em] text-front-ember-soft transition-colors hover:text-front-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
-                >
-                    ← {category}
-                </Link>
-
-                <p className="mt-8 font-mono text-[12px] uppercase tracking-[0.12em] text-front-steel">
-                    {category}
-                </p>
-                <h1 className="mt-3 max-w-[14ch] font-serif text-[clamp(2.2rem,4.5vw,3.4rem)] italic leading-[1.08] tracking-[-0.02em] text-front-paper">
-                    {product.name}
-                </h1>
-                <p className="mt-5 max-w-[48ch] text-[16px] leading-relaxed text-front-steel">
-                    {product.tagline}
-                </p>
-                <p className="mt-4 font-mono text-[1.25rem] font-semibold tabular-nums text-front-ember-soft">
-                    From {formatStartingPrice(product.startingPrice)}
-                </p>
-
-                <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
-                    <img
-                        src={product.image.src}
-                        alt={product.image.alt}
-                        width={720}
-                        height={480}
-                        className="aspect-[720/480] w-full object-cover"
-                    />
+            <main>
+                <div ref={heroScope}>
+                    <ProductHeader product={product} />
                 </div>
 
-                <p className="mt-12 max-w-[42ch] text-[14px] text-front-steel">
-                    Full product brief is coming next.{" "}
-                    <Link
-                        href="/contact"
-                        className="text-front-ember-soft underline-offset-4 hover:underline"
-                    >
-                        Ask us about adapting this for your market
-                    </Link>
-                    , or{" "}
-                    <Link
-                        href="/saas"
-                        className="text-front-ember-soft underline-offset-4 hover:underline"
-                    >
-                        browse the catalog
-                    </Link>
-                    .
-                </p>
+                <ScreenshotGallery
+                    images={product.gallery}
+                    eyebrow="Product screens"
+                    title="How it looks in use"
+                />
+
+                <FeatureList features={product.features} />
+
+                <PlanComparisonTable product={product} plans={product.plans} />
+
+                {recommendedPlan ? (
+                    <section className="front-container pb-4">
+                        <Reveal>
+                            <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-front-panel px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+                                <div>
+                                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-front-ember-soft">
+                                        Get started
+                                    </p>
+                                    <p className="mt-2 max-w-[40ch] text-[15px] leading-relaxed text-front-steel">
+                                        Prefer a quick path? Ask about the{" "}
+                                        <span className="text-white">
+                                            {recommendedPlan.name}
+                                        </span>{" "}
+                                        plan for {product.name} — or WhatsApp us
+                                        with the same context.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col gap-2.5 sm:min-w-[220px]">
+                                    <ContactAboutPlanButton
+                                        productSlug={product.slug}
+                                        planKey={recommendedPlan.key}
+                                        label="Get started — contact us"
+                                        className="w-full"
+                                    />
+                                    <WhatsAppButton
+                                        variant="outline"
+                                        label="WhatsApp Kiln"
+                                        message={whatsappMessageForProduct(
+                                            product,
+                                            recommendedPlan
+                                        )}
+                                        className="w-full justify-center"
+                                    />
+                                </div>
+                            </div>
+                        </Reveal>
+                    </section>
+                ) : null}
+
+                <FaqAccordion
+                    items={product.faq}
+                    title={`About ${product.name}`}
+                />
+
+                <RelatedProducts products={related} />
             </main>
 
             <Footer />

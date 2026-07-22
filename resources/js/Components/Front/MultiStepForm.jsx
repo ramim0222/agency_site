@@ -34,29 +34,58 @@ function readAttribution() {
     };
 }
 
+/** Prefill from /contact?product=&plan= (SaaS product detail CTAs). */
+function readProductContext() {
+    if (typeof window === "undefined") {
+        return { service_type: "", message: "" };
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const product = (params.get("product") ?? "").trim();
+    const plan = (params.get("plan") ?? "").trim();
+
+    if (!product && !plan) {
+        return { service_type: "", message: "" };
+    }
+
+    const parts = [];
+    if (product) parts.push(`Product: ${product}`);
+    if (plan) parts.push(`Plan: ${plan}`);
+
+    return {
+        service_type: "saas",
+        message: `${parts.join(" · ")}\n\nI'd like to talk about adapting this for our market.`,
+    };
+}
+
 export default function MultiStepForm() {
     const [step, setStep] = useState(1);
     const [localErrors, setLocalErrors] = useState({});
     const panelRef = useRef(null);
     const directionRef = useRef(1);
 
+    const productContext = readProductContext();
+
     const { data, setData, post, processing, errors, clearErrors } = useForm({
-        service_type: "",
+        service_type: productContext.service_type,
         budget: "",
         timeline: "",
         name: "",
         email: "",
         phone: "",
-        message: "",
+        message: productContext.message,
         ...readAttribution(),
     });
 
     useEffect(() => {
-        // Re-capture attribution after hydration in case of SSR mismatch.
+        // Re-capture attribution + product context after hydration (SSR mismatch).
         const attr = readAttribution();
         Object.entries(attr).forEach(([key, value]) => {
             if (value) setData(key, value);
         });
+        const ctx = readProductContext();
+        if (ctx.service_type) setData("service_type", ctx.service_type);
+        if (ctx.message) setData("message", ctx.message);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

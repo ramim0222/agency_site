@@ -2,7 +2,11 @@ import { useRef, useState } from "react";
 import Reveal from "@/Components/Front/Reveal";
 import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 
-export default function ScreenshotGallery({ images = [] }) {
+export default function ScreenshotGallery({
+    images = [],
+    eyebrow = "Screens",
+    title = "Product in the wild",
+}) {
     const [active, setActive] = useState(0);
     const stageRef = useRef(null);
 
@@ -36,10 +40,10 @@ export default function ScreenshotGallery({ images = [] }) {
                 <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
                     <div>
                         <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-front-ember-soft">
-                            Screens
+                            {eyebrow}
                         </p>
                         <h2 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.02em] text-white sm:text-[1.75rem]">
-                            Product in the wild
+                            {title}
                         </h2>
                     </div>
                     <p className="font-mono text-[11px] tabular-nums text-front-steel-dim">

@@ -251,6 +251,8 @@ class LeadController extends Controller
      *     q: ?string,
      *     from: ?string,
      *     to: ?string,
+     *     campaign: ?string,
+     *     landing: ?string,
      *     sort: string,
      *     dir: string,
      *     archived: bool
@@ -267,6 +269,8 @@ class LeadController extends Controller
         $q = trim($request->string('q')->toString());
         $from = $request->string('from')->toString();
         $to = $request->string('to')->toString();
+        $campaign = trim($request->string('campaign')->toString());
+        $landing = trim($request->string('landing')->toString());
         $sort = $request->string('sort')->toString();
         $dir = strtolower($request->string('dir')->toString());
 
@@ -280,6 +284,8 @@ class LeadController extends Controller
             'q' => $q !== '' ? $q : null,
             'from' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $from) ? $from : null,
             'to' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $to) ? $to : null,
+            'campaign' => $campaign !== '' ? $campaign : null,
+            'landing' => $landing !== '' ? $landing : null,
             'sort' => in_array($sort, ['name', 'source', 'service', 'status', 'date'], true) ? $sort : 'date',
             'dir' => in_array($dir, ['asc', 'desc'], true) ? $dir : 'desc',
             'archived' => $request->boolean('archived'),
@@ -306,6 +312,14 @@ class LeadController extends Controller
 
         if ($filters['service']) {
             $query->where('service_type', $filters['service']);
+        }
+
+        if ($filters['campaign']) {
+            $query->where('utm_campaign', $filters['campaign']);
+        }
+
+        if ($filters['landing']) {
+            $query->where('landing_page', $filters['landing']);
         }
 
         if ($filters['pipeline'] === 'open') {

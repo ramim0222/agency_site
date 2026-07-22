@@ -26,13 +26,52 @@ class LeadFactory extends Factory
             'other',
         ]);
 
-        [$utmSource, $utmMedium, $referrer] = match ($sourcePreset) {
-            'facebook' => ['facebook', 'paid_social', null],
-            'google' => ['google', 'cpc', null],
-            'organic' => ['organic', 'seo', 'https://www.bing.com/search?q=kiln'],
-            'referral' => [null, null, 'https://partner.example.com/directory'],
-            'whatsapp' => ['whatsapp', 'direct', null],
-            default => [null, null, null],
+        $facebookCampaigns = ['fb-retarget-q2', 'fb-lookalike-saas', 'fb-brand-awareness'];
+        $googleCampaigns = ['g-brand-search', 'g-competitor', 'g-demo-request'];
+        $landingPages = [
+            '/landing/saas-starter',
+            '/landing/website-refresh',
+            '/landing/mobile-mvp',
+            '/contact',
+        ];
+
+        [$utmSource, $utmMedium, $utmCampaign, $referrer, $landing] = match ($sourcePreset) {
+            'facebook' => [
+                'facebook',
+                'paid_social',
+                fake()->randomElement($facebookCampaigns),
+                null,
+                fake()->randomElement(['/landing/saas-starter', '/landing/website-refresh', '/contact']),
+            ],
+            'google' => [
+                'google',
+                'cpc',
+                fake()->randomElement($googleCampaigns),
+                null,
+                fake()->randomElement(['/landing/mobile-mvp', '/landing/saas-starter', '/contact']),
+            ],
+            'organic' => [
+                'organic',
+                'seo',
+                null,
+                'https://www.bing.com/search?q=kiln',
+                fake()->randomElement(['/contact', '/landing/website-refresh']),
+            ],
+            'referral' => [
+                null,
+                null,
+                null,
+                'https://partner.example.com/directory',
+                '/contact',
+            ],
+            'whatsapp' => [
+                'whatsapp',
+                'direct',
+                null,
+                null,
+                '/contact',
+            ],
+            default => [null, null, null, null, fake()->randomElement($landingPages)],
         };
 
         return [
@@ -45,13 +84,13 @@ class LeadFactory extends Factory
             'message' => fake()->optional(0.7)->paragraph(),
             'utm_source' => $utmSource,
             'utm_medium' => $utmMedium,
-            'utm_campaign' => $utmSource ? fake()->slug(2) : null,
+            'utm_campaign' => $utmCampaign,
             'utm_term' => null,
             'utm_content' => null,
             'referrer' => $referrer,
-            'landing_page' => '/contact',
+            'landing_page' => $landing,
             'status' => fake()->randomElement(Lead::STATUSES),
-            'created_at' => fake()->dateTimeBetween('-21 days', 'now'),
+            'created_at' => fake()->dateTimeBetween('-45 days', 'now'),
             'updated_at' => now(),
         ];
     }

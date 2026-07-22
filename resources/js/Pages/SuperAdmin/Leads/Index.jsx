@@ -18,6 +18,20 @@ function toDraft(filters) {
     };
 }
 
+function filterSummary(filters, total) {
+    const parts = [];
+    if (filters.source) parts.push(`source: ${filters.source}`);
+    if (filters.campaign) parts.push(`campaign: ${filters.campaign}`);
+    if (filters.landing) parts.push(`landing: ${filters.landing}`);
+    if (filters.status) parts.push(`status: ${filters.status}`);
+    if (filters.service) parts.push(`service: ${filters.service}`);
+    if (filters.q) parts.push(`search: ${filters.q}`);
+    if (filters.range) parts.push(`range: ${filters.range}`);
+    if (filters.pipeline) parts.push(`pipeline: ${filters.pipeline}`);
+    const label = parts.length ? parts.join(" · ") : "All leads";
+    return `${label} · ${total} shown`;
+}
+
 function buildQuery(filters, overrides = {}) {
     const next = { ...filters, ...overrides };
     const query = {};
@@ -103,6 +117,8 @@ export default function LeadsIndex({ leads = [], filters, meta }) {
             to: draft.to || null,
             range: null,
             pipeline: null,
+            campaign: null,
+            landing: null,
         });
     }
 
@@ -116,6 +132,8 @@ export default function LeadsIndex({ leads = [], filters, meta }) {
             to: null,
             range: null,
             pipeline: null,
+            campaign: null,
+            landing: null,
         });
     }
 
@@ -199,7 +217,7 @@ export default function LeadsIndex({ leads = [], filters, meta }) {
                             Leads
                         </h1>
                         <p className="mt-2 text-[14px] text-admin-muted">
-                            Every brief in one filterable desk · {meta.total} shown
+                            {filterSummary(filters, meta.total)}
                             {processing ? " · updating…" : ""}
                         </p>
                     </div>

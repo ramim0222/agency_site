@@ -23,7 +23,9 @@ export default function LeadFilterBar({
         filters.from ||
         filters.to ||
         filters.range ||
-        filters.pipeline;
+        filters.pipeline ||
+        filters.campaign ||
+        filters.landing;
 
     function setField(key, value) {
         onDraftChange({ ...draft, [key]: value });
@@ -159,11 +161,16 @@ export default function LeadFilterBar({
                 >
                     {processing ? "Applying…" : "Apply filters"}
                 </button>
-                {(filters.range || filters.pipeline) && (
+                {(filters.range ||
+                    filters.pipeline ||
+                    filters.campaign ||
+                    filters.landing) && (
                     <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-admin-muted">
                         Preset
                         {filters.range ? ` · ${filters.range}` : ""}
                         {filters.pipeline ? ` · ${filters.pipeline}` : ""}
+                        {filters.campaign ? ` · camp ${filters.campaign}` : ""}
+                        {filters.landing ? ` · ${filters.landing}` : ""}
                     </p>
                 )}
             </div>

@@ -217,6 +217,18 @@ class Lead extends Model
         };
     }
 
+    public static function channelLabel(string $source): string
+    {
+        return match ($source) {
+            'facebook' => 'Facebook Ads',
+            'google' => 'Google Ads',
+            'organic' => 'Organic / Direct',
+            'referral' => 'Referral',
+            'whatsapp' => 'WhatsApp Direct',
+            default => 'Other',
+        };
+    }
+
     public static function statusLabel(string $status): string
     {
         return match ($status) {

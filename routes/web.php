@@ -24,6 +24,10 @@ Route::get('/services/mobile-apps', function () {
     return Inertia::render('Front/ServicesMobileApps');
 })->name('services.mobile-apps');
 
+Route::get('/services/saas', function () {
+    return Inertia::render('Front/ServicesSaas');
+})->name('services.saas');
+
 Route::get('/portfolio', function () {
     return Inertia::render('Front/Portfolio');
 })->name('portfolio');

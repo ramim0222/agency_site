@@ -30,6 +30,34 @@ Route::get('/portfolio/{slug}', function (string $slug) {
     ]);
 })->name('portfolio.show');
 
+Route::get('/saas', function () {
+    return Inertia::render('Front/Saas');
+})->name('saas');
+
+Route::get('/saas/category/{category}', function (string $category) {
+    $registry = require resource_path('data/front/saas.php');
+
+    if (! in_array($category, $registry['categories'], true)) {
+        abort(404);
+    }
+
+    return Inertia::render('Front/Saas', [
+        'categorySlug' => $category,
+    ]);
+})->name('saas.category');
+
+Route::get('/saas/{slug}', function (string $slug) {
+    $registry = require resource_path('data/front/saas.php');
+
+    if (! in_array($slug, $registry['products'], true)) {
+        abort(404);
+    }
+
+    return Inertia::render('Front/SaasShow', [
+        'slug' => $slug,
+    ]);
+})->name('saas.show');
+
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:8,1')

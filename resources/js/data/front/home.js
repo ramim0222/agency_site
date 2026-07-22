@@ -23,6 +23,7 @@ export function whatsappHref(message = whatsapp.message) {
 export const primaryNav = [
     { label: "Services", href: "/#services" },
     { label: "Portfolio", href: "/portfolio" },
+    { label: "SaaS", href: "/saas" },
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
@@ -195,6 +196,7 @@ export const footerLinks = {
     company: [
         { label: "About", href: "/about" },
         { label: "Portfolio", href: "/portfolio" },
+        { label: "SaaS products", href: "/saas" },
         { label: "Pricing", href: "/pricing" },
         { label: "Blog", href: "/blog" },
         { label: "Contact", href: "/contact" },

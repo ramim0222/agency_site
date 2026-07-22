@@ -20,11 +20,14 @@ Route::middleware('guest')->group(function () {
     // Legacy Breeze path → admin login.
     Route::redirect('login', '/admin/login');
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+    Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    Route::post('admin/forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
+
+    // Legacy Breeze path → admin forgot password.
+    Route::redirect('forgot-password', '/admin/forgot-password');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
         ->name('password.reset');

@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import AuthInput from "@/Components/Auth/AuthInput";
 import AuthButton from "@/Components/Auth/AuthButton";
 
@@ -43,19 +43,34 @@ export default function AdminLoginForm({ status }) {
                 required
             />
 
-            <AuthInput
-                id="password"
-                label="Password"
-                type="password"
-                name="password"
-                value={data.password}
-                autoComplete="current-password"
-                disabled={processing}
-                error={errors.password}
-                placeholder="••••••••"
-                onChange={(e) => setData("password", e.target.value)}
-                required
-            />
+            <div className="space-y-1.5">
+                <div className="flex items-center justify-between gap-3">
+                    <label
+                        htmlFor="password"
+                        className="font-mono text-[11px] uppercase tracking-[0.12em] text-admin-muted"
+                    >
+                        Password
+                    </label>
+                    <Link
+                        href={route("password.request")}
+                        className="font-mono text-[11px] uppercase tracking-[0.08em] text-admin-muted transition-colors hover:text-admin-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-admin-accent/40 rounded-sm"
+                    >
+                        Forgot password?
+                    </Link>
+                </div>
+                <AuthInput
+                    id="password"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    autoComplete="current-password"
+                    disabled={processing}
+                    error={errors.password}
+                    placeholder="••••••••"
+                    onChange={(e) => setData("password", e.target.value)}
+                    required
+                />
+            </div>
 
             <label className="flex cursor-pointer items-center gap-2.5 select-none">
                 <input

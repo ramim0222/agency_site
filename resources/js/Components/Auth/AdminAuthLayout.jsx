@@ -8,6 +8,7 @@ import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
  */
 export default function AdminAuthLayout({
     title = "Admin sign in",
+    eyebrow = "Internal lead desk · sign in",
     children,
 }) {
     const cardRef = useRef(null);
@@ -57,7 +58,7 @@ export default function AdminAuthLayout({
                         </span>
                     </div>
                     <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-admin-muted">
-                        Internal lead desk · sign in
+                        {eyebrow}
                     </p>
                 </div>
 

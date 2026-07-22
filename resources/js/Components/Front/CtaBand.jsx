@@ -60,6 +60,15 @@ export default function CtaBand({ content, whatsappMessage }) {
                         {content.primaryCta.label}
                         <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
+                    {content.secondaryCta ? (
+                        <Link
+                            href={content.secondaryCta.href}
+                            className="inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.1em] text-front-steel transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
+                        >
+                            {content.secondaryCta.label}
+                            <ArrowUpRight className="size-3.5" />
+                        </Link>
+                    ) : null}
                     <WhatsAppButton message={whatsappMessage} />
                 </div>
             </div>

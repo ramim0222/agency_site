@@ -47,6 +47,18 @@ export default function About() {
                     title="Small studio. Accountable builders."
                 />
 
+                <section className="front-container pb-4">
+                    <Reveal>
+                        <Link
+                            href="/careers"
+                            className="group inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.1em] text-front-steel transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
+                        >
+                            Careers at Kiln
+                            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Link>
+                    </Reveal>
+                </section>
+
                 <section className="front-container py-16 lg:py-20">
                     <Reveal>
                         <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-front-ember-soft">

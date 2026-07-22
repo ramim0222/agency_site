@@ -22,6 +22,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+    Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
+    Route::patch('/leads/bulk-status', [LeadController::class, 'bulkUpdateStatus'])->name('leads.bulk-status');
+    Route::patch('/leads/{lead}/status', [LeadController::class, 'updateStatus'])->name('leads.status');
     Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
 
     Route::get('/sources', [SourceController::class, 'index'])->name('sources.index');

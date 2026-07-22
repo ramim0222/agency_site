@@ -1,12 +1,5 @@
 import { Link } from "@inertiajs/react";
-
-const STATUS_CHIP = {
-    new: "border-sky-400/30 bg-sky-400/10 text-sky-200",
-    contacted: "border-admin-accent/30 bg-admin-accent/10 text-admin-accent",
-    quoted: "border-amber-400/30 bg-amber-400/10 text-amber-200",
-    won: "border-emerald-400/30 bg-emerald-400/10 text-emerald-200",
-    lost: "border-admin-danger/30 bg-admin-danger/10 text-admin-danger",
-};
+import StatusBadge from "@/Components/SuperAdmin/StatusBadge";
 
 export default function RecentLeadsFeed({ leads = [] }) {
     const empty = leads.length === 0;
@@ -55,11 +48,10 @@ export default function RecentLeadsFeed({ leads = [] }) {
                                     </p>
                                 </div>
                                 <div className="flex shrink-0 items-center gap-3">
-                                    <span
-                                        className={`rounded border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] ${STATUS_CHIP[lead.status] ?? STATUS_CHIP.new}`}
-                                    >
-                                        {lead.statusLabel}
-                                    </span>
+                                    <StatusBadge
+                                        status={lead.status}
+                                        label={lead.statusLabel}
+                                    />
                                     <span className="font-mono text-[11px] text-admin-muted tabular-nums">
                                         {lead.createdAtLabel}
                                     </span>

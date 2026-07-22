@@ -7,23 +7,15 @@ import SearchBar from "@/Components/Front/SearchBar";
 import SaasProductGrid from "@/Components/Front/SaasProductGrid";
 import WhatsAppButton from "@/Components/Front/WhatsAppButton";
 import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
-import {
-    getCategoryKeyFromSlug,
-    products,
-    saasCategories,
-    saasPage,
-} from "@/data/front/saas";
+import { products, saasCategories, saasPage } from "@/data/front/saas";
 
 /**
  * SaaS product catalog — static products, client search + category URLs.
  * Skills: frontend-design (kiln storefront), taste-design (mono prices),
  * gsap-react (hero + grid restagger), ui-ux-pro-max (search, empty, deferred).
  */
-export default function Saas({ categorySlug = null }) {
+export default function Saas() {
     const heroRef = useRef(null);
-    const category = categorySlug
-        ? getCategoryKeyFromSlug(categorySlug)
-        : "all";
     const [query, setQuery] = useState("");
     const deferredQuery = useDeferredValue(query);
 
@@ -38,18 +30,14 @@ export default function Saas({ categorySlug = null }) {
 
     const visible = useMemo(() => {
         const q = deferredQuery.trim().toLowerCase();
-        return products.filter((product) => {
-            const catOk =
-                category === "all" || product.category === category;
-            if (!catOk) return false;
-            if (!q) return true;
-            return (
+        if (!q) return products;
+        return products.filter(
+            (product) =>
                 product.name.toLowerCase().includes(q) ||
                 product.tagline.toLowerCase().includes(q) ||
                 product.category.toLowerCase().includes(q)
-            );
-        });
-    }, [category, deferredQuery]);
+        );
+    }, [deferredQuery]);
 
     useGSAP(
         () => {
@@ -78,9 +66,6 @@ export default function Saas({ categorySlug = null }) {
         },
         { scope: heroRef }
     );
-
-    const activeLabel =
-        saasCategories.find((tab) => tab.key === category)?.label ?? "All";
 
     return (
         <div className="front bg-front-graphite">
@@ -136,7 +121,7 @@ export default function Saas({ categorySlug = null }) {
                         <div className="min-w-0 flex-1">
                             <CategoryFilterTabs
                                 tabs={saasCategories}
-                                value={category}
+                                value="all"
                                 counts={counts}
                             />
                         </div>
@@ -148,8 +133,7 @@ export default function Saas({ categorySlug = null }) {
                     </div>
 
                     <p className="mb-6 font-mono text-[12px] uppercase tracking-[0.1em] text-front-steel-dim">
-                        {activeLabel} · showing {visible.length} of{" "}
-                        {products.length}
+                        All · showing {visible.length} of {products.length}
                         {deferredQuery.trim()
                             ? ` · “${deferredQuery.trim()}”`
                             : ""}
@@ -157,7 +141,7 @@ export default function Saas({ categorySlug = null }) {
 
                     <SaasProductGrid
                         products={visible}
-                        filterKey={category}
+                        filterKey="all"
                         searchQuery={deferredQuery}
                         emptyMessage={saasPage.empty}
                     />

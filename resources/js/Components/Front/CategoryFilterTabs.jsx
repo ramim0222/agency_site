@@ -29,7 +29,6 @@ export default function CategoryFilterTabs({
                         href={href}
                         role="tab"
                         aria-selected={active}
-                        preserveScroll
                         className={`relative -mb-px px-3 py-3 font-mono text-[12px] uppercase tracking-[0.1em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55 focus-visible:ring-offset-2 focus-visible:ring-offset-front-graphite sm:px-4 ${
                             active
                                 ? "text-white"

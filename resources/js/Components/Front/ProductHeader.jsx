@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import Breadcrumb from "@/Components/Front/Breadcrumb";
 import {
     categoryLabels,
     formatStartingPrice,
@@ -24,12 +24,16 @@ export default function ProductHeader({ product }) {
             />
 
             <div className="front-container relative">
-                <Link
-                    href="/saas"
-                    className="font-mono text-[12px] uppercase tracking-[0.1em] text-front-ember-soft transition-colors hover:text-front-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
-                >
-                    ← All products
-                </Link>
+                <Breadcrumb
+                    items={[
+                        { label: "SaaS", href: "/saas" },
+                        {
+                            label: category,
+                            href: `/saas/category/${product.category}`,
+                        },
+                        { label: product.name },
+                    ]}
+                />
 
                 <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_minmax(0,1.1fr)] lg:gap-14">
                     <div>

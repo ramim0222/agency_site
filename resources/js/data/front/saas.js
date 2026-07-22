@@ -27,6 +27,50 @@ export const categoryLabels = {
     internal: "Internal tools",
 };
 
+/** Dedicated /saas/category/{slug} page copy — static per category. */
+export const categoryPages = {
+    billing: {
+        slug: "billing",
+        key: "billing",
+        name: "Billing",
+        description:
+            "Subscription, seats, and usage billing starters — plans, dunning, and meters you can adapt to your market without rebuilding Stripe from scratch.",
+        empty: "No billing products in the catalog yet. Browse everything or tell us what you need metered.",
+    },
+    operations: {
+        slug: "operations",
+        key: "operations",
+        name: "Operations",
+        description:
+            "Dispatch boards and field capture for teams that outgrew spreadsheets — live assignment, exceptions, and offline notes that sync when crews are back online.",
+        empty: "No operations products listed yet. See the full catalog or ask for a custom ops build.",
+    },
+    booking: {
+        slug: "booking",
+        key: "booking",
+        name: "Booking",
+        description:
+            "Calendars, intake, deposits, and reminders for clinics and service businesses — booking flows patients and customers actually complete.",
+        empty: "No booking products in this category yet. Browse all SaaS products or request a custom scheduler.",
+    },
+    commerce: {
+        slug: "commerce",
+        key: "commerce",
+        name: "Commerce",
+        description:
+            "Multi-tenant shipping, wholesale ordering, and usage-tied commerce tools — catalogs, price lists, and label queues shaped for B2B rhythm.",
+        empty: "No commerce products listed yet. Explore the full catalog or talk to us about a custom portal.",
+    },
+    internal: {
+        slug: "internal",
+        key: "internal",
+        name: "Internal tools",
+        description:
+            "Internal desks your team runs every day — quote pipelines and ops tooling that stay out of the public storefront.",
+        empty: "No internal tools in the catalog yet. Browse other categories or describe the desk you need built.",
+    },
+};
+
 /**
  * Catalog products — each links to /saas/{slug}.
  * Detail fields (gallery, features, plans, faq) live in productDetails.
@@ -1060,10 +1104,18 @@ export function whatsappMessageForProduct(product, plan = null) {
 }
 
 export function isValidCategorySlug(slug) {
-    return saasCategories.some((cat) => cat.slug === slug);
+    return Boolean(categoryPages[slug]) || saasCategories.some((cat) => cat.slug === slug);
 }
 
 export function getCategoryKeyFromSlug(slug) {
     const match = saasCategories.find((cat) => cat.slug === slug);
     return match?.key ?? "all";
+}
+
+export function getCategoryPage(slug) {
+    return categoryPages[slug] ?? null;
+}
+
+export function getProductsByCategory(categoryKey) {
+    return products.filter((product) => product.category === categoryKey);
 }

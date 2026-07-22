@@ -41,7 +41,7 @@ Route::get('/saas/category/{category}', function (string $category) {
         abort(404);
     }
 
-    return Inertia::render('Front/Saas', [
+    return Inertia::render('Front/SaasCategory', [
         'categorySlug' => $category,
     ]);
 })->name('saas.category');

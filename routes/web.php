@@ -18,14 +18,15 @@ Route::get('/portfolio', function () {
 
 Route::get('/portfolio/{slug}', function (string $slug) {
     $projects = require resource_path('data/front/portfolio.php');
-    $project = collect($projects)->firstWhere('slug', $slug);
+    $exists = collect($projects)->contains(fn (array $project) => ($project['slug'] ?? null) === $slug);
 
-    if (! $project) {
+    if (! $exists) {
         abort(404);
     }
 
+    // Full case-study body lives in resources/js/data/front/portfolio.js
     return Inertia::render('Front/PortfolioShow', [
-        'project' => $project,
+        'slug' => $slug,
     ]);
 })->name('portfolio.show');
 

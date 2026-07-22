@@ -11,8 +11,7 @@ test('portfolio case study resolves by slug and 404s unknown', function () {
         ->assertOk()
         ->assertInertia(fn ($page) => $page
             ->component('Front/PortfolioShow')
-            ->where('project.slug', 'harborline-dispatch')
-            ->where('project.client', 'Harborline Logistics')
+            ->where('slug', 'harborline-dispatch')
         );
 
     $this->get(route('portfolio.show', 'does-not-exist'))->assertNotFound();

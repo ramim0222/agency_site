@@ -12,6 +12,23 @@ Route::get('/', function () {
     return Inertia::render('Front/Home');
 })->name('home');
 
+Route::get('/portfolio', function () {
+    return Inertia::render('Front/Portfolio');
+})->name('portfolio');
+
+Route::get('/portfolio/{slug}', function (string $slug) {
+    $projects = require resource_path('data/front/portfolio.php');
+    $project = collect($projects)->firstWhere('slug', $slug);
+
+    if (! $project) {
+        abort(404);
+    }
+
+    return Inertia::render('Front/PortfolioShow', [
+        'project' => $project,
+    ]);
+})->name('portfolio.show');
+
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:8,1')

@@ -2,6 +2,8 @@
 // fetched from a backend — copy, imagery, and numbers all live here so the
 // page renders fully without a CMS or API.
 
+import { homePortfolio } from "@/data/front/portfolio";
+
 export const brand = {
     name: "Kiln",
     fullName: "Kiln Studio",
@@ -93,52 +95,8 @@ export const services = [
     },
 ];
 
-export const portfolio = [
-    {
-        key: "harborline",
-        client: "Harborline Logistics",
-        title: "Dispatch and fleet tracking platform",
-        result: "Replaced three spreadsheets and a shared inbox with one live dispatch board.",
-        stack: ["Laravel", "React", "PostgreSQL"],
-        image: {
-            src: "https://placehold.co/640x420?text=Harborline+Dispatch+Dashboard",
-            alt: "Screenshot placeholder of the Harborline Logistics dispatch dashboard",
-        },
-    },
-    {
-        key: "fernway",
-        client: "Fernway Clinics",
-        title: "Patient intake and booking app",
-        result: "Moved phone-only booking onto a mobile app patients actually keep on their home screen.",
-        stack: ["React Native", "Expo", "Laravel"],
-        image: {
-            src: "https://placehold.co/640x420?text=Fernway+Booking+App",
-            alt: "Screenshot placeholder of the Fernway Clinics mobile booking app",
-        },
-    },
-    {
-        key: "ledger-cove",
-        client: "Ledger Cove",
-        title: "Subscription billing for a bookkeeping SaaS",
-        result: "Launched metered plans and dunning flows so failed payments stop costing quiet churn.",
-        stack: ["Next.js", "Stripe", "Laravel"],
-        image: {
-            src: "https://placehold.co/640x420?text=Ledger+Cove+Billing+UI",
-            alt: "Screenshot placeholder of the Ledger Cove subscription billing interface",
-        },
-    },
-    {
-        key: "northgrain",
-        client: "Northgrain Supply Co.",
-        title: "Wholesale ordering portal",
-        result: "Gave field reps a tablet-friendly ordering flow that syncs straight into their existing ERP.",
-        stack: ["Laravel", "Inertia", "React"],
-        image: {
-            src: "https://placehold.co/640x420?text=Northgrain+Ordering+Portal",
-            alt: "Screenshot placeholder of the Northgrain Supply Co. wholesale ordering portal",
-        },
-    },
-];
+/** Home carousel briefs — shared catalog lives in `data/front/portfolio.js`. */
+export const portfolio = homePortfolio;
 
 export const techStack = [
     { key: "laravel", label: "Laravel", mark: "La" },

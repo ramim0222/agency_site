@@ -14,5 +14,12 @@ test('blog post resolves by slug and 404s unknown', function () {
             ->where('slug', 'estimating-fixed-bids')
         );
 
+    $this->get(route('blog.show', 'billing-dunning'))
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->component('Front/BlogShow')
+            ->where('slug', 'billing-dunning')
+        );
+
     $this->get(route('blog.show', 'does-not-exist'))->assertNotFound();
 });

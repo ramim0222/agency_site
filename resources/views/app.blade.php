@@ -4,13 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>Student Management System</title>
-        <meta name="description" content="Student Management System">
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+        <title inertia>Kiln — Product Engineering Studio</title>
+        <meta name="description" content="Kiln builds web platforms, mobile apps, and SaaS products for businesses that need working software, not just a plan.">
 
         <!-- Scripts -->
         @routes

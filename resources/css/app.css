@@ -2,12 +2,30 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@import "@fontsource/instrument-serif";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: 'Geist Variable', sans-serif;
+    --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+
+    /* Front (marketing site) design tokens — "Engineering Studio" palette */
+    --color-front-graphite: #0b0c0f;
+    --color-front-panel: #14161b;
+    --color-front-panel-2: #1b1e25;
+    --color-front-paper: #f5f2ec;
+    --color-front-paper-2: #ece7dc;
+    --color-front-ink: #14151a;
+    --color-front-steel: #94979f;
+    --color-front-steel-dim: #6b6e76;
+    --color-front-slate: #63666f;
+    --color-front-ember: #d98e4a;
+    --color-front-ember-soft: #e9b17e;
+    --color-front-ember-ink: #4a2f14;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -127,4 +145,67 @@
   html {
     @apply font-sans;
     }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Front (marketing) site utilities                                       */
+/* ---------------------------------------------------------------------- */
+
+.front {
+  font-family: var(--font-sans);
+}
+
+.front-container {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .front-container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .front-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.front-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.front-scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.front-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes front-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.front-marquee-track {
+  animation: front-marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .front-marquee-track {
+    animation: none;
+  }
 }

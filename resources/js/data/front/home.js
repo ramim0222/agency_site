@@ -1,0 +1,244 @@
+// Static content for the Front marketing site. Nothing on this page is
+// fetched from a backend — copy, imagery, and numbers all live here so the
+// page renders fully without a CMS or API.
+
+export const brand = {
+    name: "Kiln",
+    fullName: "Kiln Studio",
+    tagline: "Product engineering studio",
+};
+
+export const whatsapp = {
+    number: "15550102938",
+    displayNumber: "+1 (555) 010-2938",
+    message: "Hi Kiln — I'd like to talk about a project.",
+};
+
+export function whatsappHref(message = whatsapp.message) {
+    return `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(message)}`;
+}
+
+export const primaryNav = [
+    { label: "Services", href: "#services" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
+];
+
+export const hero = {
+    eyebrow: "Product engineering studio",
+    headline: [
+        { type: "text", value: "We build" },
+        {
+            type: "image",
+            src: "https://placehold.co/72x44?text=UI",
+            alt: "Close-up of a shipped product interface",
+        },
+        { type: "text", value: "software" },
+        { type: "break" },
+        { type: "text", value: "that businesses" },
+        { type: "break" },
+        { type: "serif", value: "actually run on." },
+    ],
+    sub: "Laravel, React, and native mobile builds for teams who need working product, not another slide deck. One accountable team, from the first commit to the public launch.",
+    primaryCta: { label: "Get a Free Quote", href: "/contact" },
+    visual: {
+        src: "https://placehold.co/960x680?text=Product+Dashboard+Preview",
+        alt: "Preview of a client dashboard product built by Kiln, showing charts and account data",
+    },
+    statusChips: [
+        { label: "Web Development", state: "active" },
+        { label: "Mobile Apps", state: "active" },
+        { label: "SaaS Billing", state: "queued" },
+    ],
+};
+
+export const services = [
+    {
+        key: "web-development",
+        icon: "Globe",
+        title: "Web Development",
+        description:
+            "Marketing sites and content platforms built to load fast, rank well, and hold up after launch day.",
+        stack: ["Laravel", "React", "Tailwind"],
+        href: "/services/web-development",
+    },
+    {
+        key: "web-apps",
+        icon: "LayoutDashboard",
+        title: "Web Apps",
+        description:
+            "Internal tools and customer-facing dashboards — the operational software your team runs the day on.",
+        stack: ["Laravel", "Inertia", "PostgreSQL"],
+        href: "/services/web-apps",
+    },
+    {
+        key: "mobile-apps",
+        icon: "Smartphone",
+        title: "Mobile Apps",
+        description:
+            "Native-feeling iOS and Android apps from a single React Native codebase, shipped to both stores.",
+        stack: ["React Native", "Expo", "TypeScript"],
+        href: "/services/mobile-apps",
+    },
+    {
+        key: "saas",
+        icon: "Repeat",
+        title: "SaaS Subscriptions",
+        description:
+            "Multi-tenant products with billing, plans, and usage limits built in from the first migration.",
+        stack: ["Next.js", "Stripe", "Laravel"],
+        href: "/services/saas",
+    },
+];
+
+export const portfolio = [
+    {
+        key: "harborline",
+        client: "Harborline Logistics",
+        title: "Dispatch and fleet tracking platform",
+        result: "Replaced three spreadsheets and a shared inbox with one live dispatch board.",
+        stack: ["Laravel", "React", "PostgreSQL"],
+        image: {
+            src: "https://placehold.co/640x420?text=Harborline+Dispatch+Dashboard",
+            alt: "Screenshot placeholder of the Harborline Logistics dispatch dashboard",
+        },
+    },
+    {
+        key: "fernway",
+        client: "Fernway Clinics",
+        title: "Patient intake and booking app",
+        result: "Moved phone-only booking onto a mobile app patients actually keep on their home screen.",
+        stack: ["React Native", "Expo", "Laravel"],
+        image: {
+            src: "https://placehold.co/640x420?text=Fernway+Booking+App",
+            alt: "Screenshot placeholder of the Fernway Clinics mobile booking app",
+        },
+    },
+    {
+        key: "ledger-cove",
+        client: "Ledger Cove",
+        title: "Subscription billing for a bookkeeping SaaS",
+        result: "Launched metered plans and dunning flows so failed payments stop costing quiet churn.",
+        stack: ["Next.js", "Stripe", "Laravel"],
+        image: {
+            src: "https://placehold.co/640x420?text=Ledger+Cove+Billing+UI",
+            alt: "Screenshot placeholder of the Ledger Cove subscription billing interface",
+        },
+    },
+    {
+        key: "northgrain",
+        client: "Northgrain Supply Co.",
+        title: "Wholesale ordering portal",
+        result: "Gave field reps a tablet-friendly ordering flow that syncs straight into their existing ERP.",
+        stack: ["Laravel", "Inertia", "React"],
+        image: {
+            src: "https://placehold.co/640x420?text=Northgrain+Ordering+Portal",
+            alt: "Screenshot placeholder of the Northgrain Supply Co. wholesale ordering portal",
+        },
+    },
+];
+
+export const techStack = [
+    { key: "laravel", label: "Laravel", mark: "La" },
+    { key: "react", label: "React", mark: "Re" },
+    { key: "nextjs", label: "Next.js", mark: "Nx" },
+    { key: "react-native", label: "React Native", mark: "RN" },
+];
+
+export const testimonials = [
+    {
+        key: "priya",
+        quote:
+            "They asked harder questions about our dispatch process than our own ops team did — the platform they built actually matches how we work.",
+        name: "Priya Nandakumar",
+        role: "Operations Lead",
+        company: "Harborline Logistics",
+    },
+    {
+        key: "daniel",
+        quote:
+            "We'd rebuilt our booking flow twice before Kiln. This is the first version our front-desk staff didn't complain about.",
+        name: "Daniel Osei",
+        role: "Clinic Director",
+        company: "Fernway Clinics",
+    },
+    {
+        key: "marisol",
+        quote:
+            "Billing is the part of a SaaS nobody wants to touch. They shipped ours in six weeks and it hasn't paged us once.",
+        name: "Marisol Fuentes",
+        role: "Founder",
+        company: "Ledger Cove",
+    },
+];
+
+export const stats = [
+    { key: "projects", value: 42, suffix: "", label: "Projects delivered" },
+    { key: "clients", value: 18, suffix: "", label: "Active clients" },
+    { key: "years", value: 6, suffix: "", label: "Years in business" },
+];
+
+export const blogPosts = [
+    {
+        key: "estimating-fixed-bids",
+        title: "Why we stopped giving fixed bids over the phone",
+        excerpt:
+            "A quote without a scoping call is a guess wearing a suit. Here's the short discovery process we run before any number leaves our side.",
+        date: "2026-06-02",
+        readMinutes: 6,
+        image: {
+            src: "https://placehold.co/560x360?text=Blog%3A+Estimating+Fixed+Bids",
+            alt: "Placeholder illustration for the blog post on estimating fixed-price project bids",
+        },
+        featured: true,
+    },
+    {
+        key: "react-native-vs-native",
+        title: "React Native still wins for most client mobile apps",
+        excerpt:
+            "Fully native makes sense past a certain scale. Below it, a shared codebase gets you to both app stores months sooner.",
+        date: "2026-05-18",
+        readMinutes: 5,
+        image: {
+            src: "https://placehold.co/420x300?text=Blog%3A+React+Native",
+            alt: "Placeholder illustration for the blog post comparing React Native and native mobile development",
+        },
+    },
+    {
+        key: "billing-dunning",
+        title: "The dunning email sequence that saved a client $4k/mo",
+        excerpt:
+            "Most failed-payment flows are one apologetic email. Here's the three-touch sequence we build into every subscription product.",
+        date: "2026-04-29",
+        readMinutes: 7,
+        image: {
+            src: "https://placehold.co/420x300?text=Blog%3A+Dunning+Emails",
+            alt: "Placeholder illustration for the blog post about subscription dunning email sequences",
+        },
+    },
+];
+
+export const finalCta = {
+    eyebrow: "Start a project",
+    headline: "Have a build in mind? Let's scope it.",
+    sub: "Tell us what you're trying to ship. We'll reply with next steps, not a sales deck.",
+    primaryCta: { label: "Get a Free Quote", href: "/contact" },
+};
+
+export const footerLinks = {
+    services: [
+        { label: "Web Development", href: "/services/web-development" },
+        { label: "Web Apps", href: "/services/web-apps" },
+        { label: "Mobile Apps", href: "/services/mobile-apps" },
+        { label: "SaaS Subscriptions", href: "/services/saas" },
+    ],
+    company: [
+        { label: "About", href: "/about" },
+        { label: "Portfolio", href: "/portfolio" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Blog", href: "/blog" },
+        { label: "Contact", href: "/contact" },
+    ],
+};

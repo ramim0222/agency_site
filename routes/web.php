@@ -20,6 +20,10 @@ Route::get('/services/web-apps', function () {
     return Inertia::render('Front/ServicesWebApps');
 })->name('services.web-apps');
 
+Route::get('/services/mobile-apps', function () {
+    return Inertia::render('Front/ServicesMobileApps');
+})->name('services.mobile-apps');
+
 Route::get('/portfolio', function () {
     return Inertia::render('Front/Portfolio');
 })->name('portfolio');

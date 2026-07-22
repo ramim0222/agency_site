@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Lead extends Model
@@ -69,6 +70,7 @@ class Lead extends Model
         'referrer',
         'landing_page',
         'status',
+        'archived_at',
     ];
 
     /**
@@ -77,7 +79,29 @@ class Lead extends Model
     protected $appends = [
         'source',
         'service_label',
+        'budget_label',
+        'timeline_label',
     ];
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'archived_at' => 'datetime',
+        ];
+    }
+
+    public function activities(): HasMany
+    {
+        return $this->hasMany(LeadActivity::class)->latest();
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->archived_at !== null;
+    }
 
     public function getSourceAttribute(): string
     {
@@ -98,6 +122,34 @@ class Lead extends Model
             'saas' => 'SaaS',
             default => Str::headline((string) $this->service_type),
         };
+    }
+
+    public function getBudgetLabelAttribute(): string
+    {
+        return match ($this->budget) {
+            'under_5k' => 'Under $5k',
+            '5k_15k' => '$5k – $15k',
+            '15k_40k' => '$15k – $40k',
+            '40k_plus' => '$40k+',
+            'not_sure' => 'Not sure yet',
+            default => Str::headline((string) $this->budget),
+        };
+    }
+
+    public function getTimelineLabelAttribute(): string
+    {
+        return match ($this->timeline) {
+            'asap' => 'ASAP',
+            '1_3_months' => '1–3 months',
+            '3_6_months' => '3–6 months',
+            'flexible' => 'Flexible',
+            default => Str::headline((string) $this->timeline),
+        };
+    }
+
+    public static function whatsappDigits(?string $phone): string
+    {
+        return preg_replace('/\D+/', '', (string) $phone) ?? '';
     }
 
     public static function resolveSource(

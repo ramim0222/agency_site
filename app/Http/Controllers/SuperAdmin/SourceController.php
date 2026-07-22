@@ -11,7 +11,9 @@ class SourceController extends Controller
 {
     public function index(): Response
     {
-        $leads = Lead::query()->get(['utm_source', 'utm_medium', 'referrer', 'landing_page']);
+        $leads = Lead::query()
+            ->whereNull('archived_at')
+            ->get(['utm_source', 'utm_medium', 'referrer', 'landing_page']);
         $total = $leads->count();
 
         $sources = collect(Lead::SOURCES)->map(function (string $key) use ($leads, $total) {

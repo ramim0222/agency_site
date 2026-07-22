@@ -16,6 +16,7 @@ class DashboardController extends Controller
         $weekStart = now()->startOfWeek();
 
         $leads = Lead::query()
+            ->whereNull('archived_at')
             ->orderByDesc('created_at')
             ->get([
                 'id',

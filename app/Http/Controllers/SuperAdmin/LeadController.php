@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lead;
+use App\Models\LeadActivity;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -47,6 +48,13 @@ class LeadController extends Controller
 
     public function show(Lead $lead): Response
     {
+        $lead->load(['activities.user:id,name']);
+
+        $digits = Lead::whatsappDigits($lead->phone);
+        $waText = rawurlencode(
+            "Hi {$lead->name}, this is Kiln following up on your {$lead->service_label} inquiry."
+        );
+
         return Inertia::render('SuperAdmin/Leads/Show', [
             'lead' => [
                 'id' => $lead->id,
@@ -55,8 +63,11 @@ class LeadController extends Controller
                 'phone' => $lead->phone,
                 'message' => $lead->message,
                 'service' => $lead->service_label,
+                'serviceType' => $lead->service_type,
                 'budget' => $lead->budget,
+                'budgetLabel' => $lead->budget_label,
                 'timeline' => $lead->timeline,
+                'timelineLabel' => $lead->timeline_label,
                 'source' => $lead->source,
                 'sourceLabel' => Lead::sourceLabel($lead->source),
                 'status' => $lead->status,
@@ -64,11 +75,87 @@ class LeadController extends Controller
                 'utmSource' => $lead->utm_source,
                 'utmMedium' => $lead->utm_medium,
                 'utmCampaign' => $lead->utm_campaign,
+                'utmTerm' => $lead->utm_term,
+                'utmContent' => $lead->utm_content,
                 'referrer' => $lead->referrer,
                 'landingPage' => $lead->landing_page,
-                'createdAtLabel' => $lead->created_at?->timezone(config('app.timezone'))->format('M j, Y · g:i A'),
+                'archived' => $lead->isArchived(),
+                'archivedAtLabel' => $lead->archived_at
+                    ?->timezone(config('app.timezone'))
+                    ->format('M j, Y · g:i A'),
+                'createdAtLabel' => $lead->created_at
+                    ?->timezone(config('app.timezone'))
+                    ->format('M j, Y · g:i A'),
+                'mailtoHref' => 'mailto:'.$lead->email.'?subject='.rawurlencode(
+                    'Following up — your '.$lead->service_label.' project'
+                ),
+                'whatsappHref' => $digits !== ''
+                    ? "https://wa.me/{$digits}?text={$waText}"
+                    : null,
+                'statuses' => collect(Lead::STATUSES)->map(fn (string $key) => [
+                    'value' => $key,
+                    'label' => Lead::statusLabel($key),
+                ])->values()->all(),
             ],
+            'activities' => $lead->activities->map(fn (LeadActivity $activity) => [
+                'id' => $activity->id,
+                'type' => $activity->type,
+                'typeLabel' => LeadActivity::typeLabel($activity->type),
+                'body' => $activity->body,
+                'author' => $activity->user?->name ?? 'Kiln Ops',
+                'createdAt' => $activity->created_at?->toIso8601String(),
+                'createdAtLabel' => $activity->created_at
+                    ?->timezone(config('app.timezone'))
+                    ->format('M j, Y · g:i A'),
+                'createdAtRelative' => $activity->created_at?->diffForHumans(),
+            ])->values()->all(),
+            'activityTypes' => collect(LeadActivity::TYPES)->map(fn (string $key) => [
+                'value' => $key,
+                'label' => LeadActivity::typeLabel($key),
+            ])->values()->all(),
         ]);
+    }
+
+    public function storeActivity(Request $request, Lead $lead): RedirectResponse
+    {
+        $validated = $request->validate([
+            'type' => ['required', 'string', 'in:'.implode(',', LeadActivity::TYPES)],
+            'body' => ['required', 'string', 'max:5000'],
+        ]);
+
+        $lead->activities()->create([
+            'user_id' => $request->user()?->id,
+            'type' => $validated['type'],
+            'body' => $validated['body'],
+        ]);
+
+        return back()->with('success', LeadActivity::typeLabel($validated['type']).' logged.');
+    }
+
+    public function archive(Lead $lead): RedirectResponse
+    {
+        $lead->update(['archived_at' => now()]);
+
+        return redirect()
+            ->route('admin.leads.index')
+            ->with('success', "Archived {$lead->name}.");
+    }
+
+    public function restore(Lead $lead): RedirectResponse
+    {
+        $lead->update(['archived_at' => null]);
+
+        return back()->with('success', "Restored {$lead->name}.");
+    }
+
+    public function destroy(Lead $lead): RedirectResponse
+    {
+        $name = $lead->name;
+        $lead->delete();
+
+        return redirect()
+            ->route('admin.leads.index')
+            ->with('success', "Deleted {$name}.");
     }
 
     public function updateStatus(Request $request, Lead $lead): RedirectResponse
@@ -165,7 +252,8 @@ class LeadController extends Controller
      *     from: ?string,
      *     to: ?string,
      *     sort: string,
-     *     dir: string
+     *     dir: string,
+     *     archived: bool
      * }
      */
     private function validatedFilters(Request $request): array
@@ -194,6 +282,7 @@ class LeadController extends Controller
             'to' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $to) ? $to : null,
             'sort' => in_array($sort, ['name', 'source', 'service', 'status', 'date'], true) ? $sort : 'date',
             'dir' => in_array($dir, ['asc', 'desc'], true) ? $dir : 'desc',
+            'archived' => $request->boolean('archived'),
         ];
     }
 
@@ -204,6 +293,12 @@ class LeadController extends Controller
     private function filteredLeads(array $filters): Collection
     {
         $query = Lead::query();
+
+        if ($filters['archived']) {
+            $query->whereNotNull('archived_at');
+        } else {
+            $query->whereNull('archived_at');
+        }
 
         if ($filters['status']) {
             $query->where('status', $filters['status']);
@@ -265,7 +360,7 @@ class LeadController extends Controller
                 default => $b->created_at?->timestamp ?? 0,
             };
 
-            return $left <=> $right ? ($left <=> $right) * $dir : 0;
+            return ($left <=> $right) * $dir;
         })->values();
     }
 

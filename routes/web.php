@@ -25,6 +25,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
     Route::patch('/leads/bulk-status', [LeadController::class, 'bulkUpdateStatus'])->name('leads.bulk-status');
     Route::patch('/leads/{lead}/status', [LeadController::class, 'updateStatus'])->name('leads.status');
+    Route::post('/leads/{lead}/activities', [LeadController::class, 'storeActivity'])->name('leads.activities.store');
+    Route::patch('/leads/{lead}/archive', [LeadController::class, 'archive'])->name('leads.archive');
+    Route::patch('/leads/{lead}/restore', [LeadController::class, 'restore'])->name('leads.restore');
+    Route::delete('/leads/{lead}', [LeadController::class, 'destroy'])->name('leads.destroy');
     Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
 
     Route::get('/sources', [SourceController::class, 'index'])->name('sources.index');

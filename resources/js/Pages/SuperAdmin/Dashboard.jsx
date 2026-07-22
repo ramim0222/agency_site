@@ -1,48 +1,157 @@
-import { Head, Link, usePage } from "@inertiajs/react";
+import { useRef } from "react";
+import { Link } from "@inertiajs/react";
+import AdminLayout from "@/Components/SuperAdmin/AdminLayout";
+import AdminStatCard from "@/Components/SuperAdmin/AdminStatCard";
+import LeadsBySourceWidget from "@/Components/SuperAdmin/LeadsBySourceWidget";
+import LeadsByStatusWidget from "@/Components/SuperAdmin/LeadsByStatusWidget";
+import RecentLeadsFeed from "@/Components/SuperAdmin/RecentLeadsFeed";
+import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 
 /**
- * Minimal SuperAdmin landing target for post-login redirect.
- * Full lead tracker UI lands in a later SuperAdmin prompt.
+ * Kiln Ops home — answers "how's lead flow right now?"
+ * Cool zinc cockpit (not marketing paper/ember). Signature: mono counters + channel bars.
  */
-export default function Dashboard() {
-    const { auth } = usePage().props;
-    const name = auth?.user?.name ?? "Admin";
+export default function Dashboard({
+    stats,
+    bySource,
+    byStatus,
+    recentLeads,
+    filters,
+}) {
+    const rootRef = useRef(null);
+
+    useGSAP(
+        () => {
+            if (!rootRef.current) return;
+
+            const cards = rootRef.current.querySelectorAll(".admin-stat-card");
+            const widgets = rootRef.current.querySelectorAll(".admin-widget");
+            const chips = rootRef.current.querySelectorAll(".admin-filter-chip");
+
+            if (prefersReducedMotion()) {
+                gsap.set([cards, widgets, chips], { opacity: 1, y: 0 });
+                return;
+            }
+
+            gsap.fromTo(
+                cards,
+                { opacity: 0, y: 16 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.55,
+                    stagger: 0.07,
+                    ease: EASE.out,
+                }
+            );
+
+            gsap.fromTo(
+                widgets,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    delay: 0.18,
+                    ease: EASE.out,
+                }
+            );
+
+            gsap.fromTo(
+                chips,
+                { opacity: 0, y: 8 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    stagger: 0.04,
+                    delay: 0.35,
+                    ease: EASE.soft,
+                }
+            );
+        },
+        { scope: rootRef }
+    );
 
     return (
-        <div className="admin flex min-h-[100dvh] flex-col">
-            <Head title="Lead desk" />
+        <AdminLayout title="Dashboard" eyebrow="Lead desk · overview">
+            <div ref={rootRef} className="mx-auto max-w-6xl">
+                <header className="mb-8 max-w-2xl">
+                    <h1 className="text-[1.75rem] font-semibold tracking-[-0.03em] text-admin-ink sm:text-[2rem]">
+                        Lead flow
+                    </h1>
+                    <p className="mt-2 text-[15px] leading-relaxed text-admin-muted">
+                        Today and this week at a glance — channel mix, pipeline
+                        status, and the latest briefs to work.
+                    </p>
+                </header>
 
-            <header className="flex items-center justify-between border-b border-admin-line px-6 py-4">
-                <div className="flex items-center gap-2.5">
-                    <span className="flex size-7 items-center justify-center rounded-md bg-admin-accent font-mono text-[12px] font-semibold text-admin-accent-ink">
-                        K
-                    </span>
-                    <span className="font-mono text-[12px] uppercase tracking-[0.16em] text-admin-ink">
-                        Kiln Ops
-                    </span>
+                <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    <AdminStatCard
+                        label="New today"
+                        value={stats.newToday}
+                        hint="Since midnight"
+                        href={route("admin.leads.index", { range: "today" })}
+                        tone="accent"
+                    />
+                    <AdminStatCard
+                        label="New this week"
+                        value={stats.newThisWeek}
+                        hint="Calendar week"
+                        href={route("admin.leads.index", { range: "week" })}
+                    />
+                    <AdminStatCard
+                        label="Open pipeline"
+                        value={stats.openPipeline}
+                        hint="New · contacted · quoted"
+                        href={route("admin.leads.index", {
+                            pipeline: "open",
+                        })}
+                    />
+                    <AdminStatCard
+                        label="All leads"
+                        value={stats.total}
+                        hint="Lifetime captured"
+                        href={route("admin.leads.index")}
+                    />
                 </div>
-                <Link
-                    href={route("logout")}
-                    method="post"
-                    as="button"
-                    className="rounded-md px-3 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] text-admin-muted transition-colors hover:bg-white/5 hover:text-admin-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-admin-accent/40"
-                >
-                    Sign out
-                </Link>
-            </header>
 
-            <main className="front-container flex flex-1 flex-col justify-center py-16">
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-admin-muted">
-                    Lead desk
-                </p>
-                <h1 className="mt-3 text-[1.75rem] font-semibold tracking-[-0.02em] text-admin-ink">
-                    Welcome back, {name}.
-                </h1>
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-admin-muted">
-                    You're signed in. The lead tracker UI ships in the next SuperAdmin build —
-                    this page is the authenticated landing for now.
-                </p>
-            </main>
-        </div>
+                <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                    <LeadsBySourceWidget
+                        items={bySource}
+                        total={stats.total}
+                    />
+                    <LeadsByStatusWidget
+                        items={byStatus}
+                        total={stats.total}
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <RecentLeadsFeed leads={recentLeads} />
+                </div>
+
+                <section className="admin-widget mt-4 rounded-xl border border-admin-line bg-admin-panel p-5 sm:p-6">
+                    <h2 className="text-[1.05rem] font-semibold tracking-[-0.02em] text-admin-ink">
+                        Quick filters
+                    </h2>
+                    <p className="mt-1 text-[13px] text-admin-muted">
+                        Jump straight into the full leads list with a preset.
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {filters.map((filter) => (
+                            <Link
+                                key={filter.label}
+                                href={filter.href}
+                                className="admin-filter-chip rounded-md border border-admin-line bg-admin-canvas px-3 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-admin-muted transition-colors hover:border-admin-accent/40 hover:bg-admin-panel-2 hover:text-admin-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-admin-accent/45 active:scale-[0.98]"
+                            >
+                                {filter.label}
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+            </div>
+        </AdminLayout>
     );
 }

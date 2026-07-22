@@ -9,9 +9,11 @@ const formatter = new Intl.DateTimeFormat("en-US", {
 });
 
 export default function BlogPreviewCard({ post, featured = false, className }) {
+    const href = post.slug ? `/blog/${post.slug}` : "/blog";
+
     return (
         <Link
-            href="/blog"
+            href={href}
             data-reveal
             className={cn(
                 "group flex overflow-hidden rounded-2xl border border-white/10 bg-front-panel transition-all duration-300 hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/50",

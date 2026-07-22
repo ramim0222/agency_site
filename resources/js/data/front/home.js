@@ -3,6 +3,9 @@
 // page renders fully without a CMS or API.
 
 import { homePortfolio } from "@/data/front/portfolio";
+import { blogPosts } from "@/data/front/blog";
+
+export { blogPosts };
 
 export const brand = {
     name: "Kiln",
@@ -146,46 +149,6 @@ export const stats = [
     { key: "projects", value: 42, suffix: "", label: "Projects delivered" },
     { key: "clients", value: 18, suffix: "", label: "Active clients" },
     { key: "years", value: 6, suffix: "", label: "Years in business" },
-];
-
-export const blogPosts = [
-    {
-        key: "estimating-fixed-bids",
-        title: "Why we stopped giving fixed bids over the phone",
-        excerpt:
-            "A quote without a scoping call is a guess wearing a suit. Here's the short discovery process we run before any number leaves our side.",
-        date: "2026-06-02",
-        readMinutes: 6,
-        image: {
-            src: "https://placehold.co/560x360?text=Blog%3A+Estimating+Fixed+Bids",
-            alt: "Placeholder illustration for the blog post on estimating fixed-price project bids",
-        },
-        featured: true,
-    },
-    {
-        key: "react-native-vs-native",
-        title: "React Native still wins for most client mobile apps",
-        excerpt:
-            "Fully native makes sense past a certain scale. Below it, a shared codebase gets you to both app stores months sooner.",
-        date: "2026-05-18",
-        readMinutes: 5,
-        image: {
-            src: "https://placehold.co/420x300?text=Blog%3A+React+Native",
-            alt: "Placeholder illustration for the blog post comparing React Native and native mobile development",
-        },
-    },
-    {
-        key: "billing-dunning",
-        title: "The dunning email sequence that saved a client $4k/mo",
-        excerpt:
-            "Most failed-payment flows are one apologetic email. Here's the three-touch sequence we build into every subscription product.",
-        date: "2026-04-29",
-        readMinutes: 7,
-        image: {
-            src: "https://placehold.co/420x300?text=Blog%3A+Dunning+Emails",
-            alt: "Placeholder illustration for the blog post about subscription dunning email sequences",
-        },
-    },
 ];
 
 export const finalCta = {

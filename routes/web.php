@@ -36,6 +36,22 @@ Route::get('/about', function () {
     return Inertia::render('Front/About');
 })->name('about');
 
+Route::get('/blog', function () {
+    return Inertia::render('Front/Blog');
+})->name('blog');
+
+Route::get('/blog/{slug}', function (string $slug) {
+    $slugs = require resource_path('data/front/blog.php');
+
+    if (! in_array($slug, $slugs, true)) {
+        abort(404);
+    }
+
+    return Inertia::render('Front/BlogShow', [
+        'slug' => $slug,
+    ]);
+})->name('blog.show');
+
 Route::get('/portfolio', function () {
     return Inertia::render('Front/Portfolio');
 })->name('portfolio');

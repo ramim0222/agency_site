@@ -34,8 +34,15 @@ function readAttribution() {
     };
 }
 
-/** Prefill from /contact?product=&plan= (SaaS product detail CTAs). */
-function readProductContext() {
+const SERVICE_QUERY_VALUES = new Set([
+    "website",
+    "web_app",
+    "mobile_app",
+    "saas",
+]);
+
+/** Prefill from /contact?product=&plan= or /contact?service=website */
+function readLeadContext() {
     if (typeof window === "undefined") {
         return { service_type: "", message: "" };
     }
@@ -43,19 +50,27 @@ function readProductContext() {
     const params = new URLSearchParams(window.location.search);
     const product = (params.get("product") ?? "").trim();
     const plan = (params.get("plan") ?? "").trim();
+    const service = (params.get("service") ?? "").trim();
 
-    if (!product && !plan) {
-        return { service_type: "", message: "" };
+    if (product || plan) {
+        const parts = [];
+        if (product) parts.push(`Product: ${product}`);
+        if (plan) parts.push(`Plan: ${plan}`);
+
+        return {
+            service_type: "saas",
+            message: `${parts.join(" · ")}\n\nI'd like to talk about adapting this for our market.`,
+        };
     }
 
-    const parts = [];
-    if (product) parts.push(`Product: ${product}`);
-    if (plan) parts.push(`Plan: ${plan}`);
+    if (SERVICE_QUERY_VALUES.has(service)) {
+        return {
+            service_type: service,
+            message: "",
+        };
+    }
 
-    return {
-        service_type: "saas",
-        message: `${parts.join(" · ")}\n\nI'd like to talk about adapting this for our market.`,
-    };
+    return { service_type: "", message: "" };
 }
 
 export default function MultiStepForm() {
@@ -64,26 +79,26 @@ export default function MultiStepForm() {
     const panelRef = useRef(null);
     const directionRef = useRef(1);
 
-    const productContext = readProductContext();
+    const leadContext = readLeadContext();
 
     const { data, setData, post, processing, errors, clearErrors } = useForm({
-        service_type: productContext.service_type,
+        service_type: leadContext.service_type,
         budget: "",
         timeline: "",
         name: "",
         email: "",
         phone: "",
-        message: productContext.message,
+        message: leadContext.message,
         ...readAttribution(),
     });
 
     useEffect(() => {
-        // Re-capture attribution + product context after hydration (SSR mismatch).
+        // Re-capture attribution + lead context after hydration (SSR mismatch).
         const attr = readAttribution();
         Object.entries(attr).forEach(([key, value]) => {
             if (value) setData(key, value);
         });
-        const ctx = readProductContext();
+        const ctx = readLeadContext();
         if (ctx.service_type) setData("service_type", ctx.service_type);
         if (ctx.message) setData("message", ctx.message);
         // eslint-disable-next-line react-hooks/exhaustive-deps

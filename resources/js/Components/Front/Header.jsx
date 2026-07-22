@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "@inertiajs/react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { EASE, ScrollTrigger, gsap, useGSAP } from "@/lib/motion";
 import { brand, primaryNav } from "@/data/front/home";
 
@@ -136,14 +136,11 @@ export default function Header({ minimal = false }) {
                 >
                     <nav className="front-container flex flex-col gap-1 py-4">
                         {primaryNav.map((item) => (
-                            <a
+                            <MobileNavBlock
                                 key={item.label}
-                                href={item.href}
-                                onClick={() => setMobileOpen(false)}
-                                className="rounded-md px-2 py-3 text-[15px] text-white/85 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
-                            >
-                                {item.label}
-                            </a>
+                                item={item}
+                                onNavigate={() => setMobileOpen(false)}
+                            />
                         ))}
                         <Link
                             href="/contact"
@@ -160,21 +157,94 @@ export default function Header({ minimal = false }) {
 }
 
 function NavItem({ item }) {
-    const isHash = item.href.startsWith("#");
+    const hasChildren = Array.isArray(item.children) && item.children.length > 0;
     const className =
         "font-mono text-[13px] uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60 rounded-sm";
 
-    if (isHash) {
+    if (!hasChildren) {
+        const isHash = item.href.startsWith("#") || item.href.includes("/#");
+        if (isHash && !item.href.startsWith("http")) {
+            return (
+                <a href={item.href} className={className}>
+                    {item.label}
+                </a>
+            );
+        }
         return (
-            <a href={item.href} className={className}>
+            <Link href={item.href} className={className}>
+                {item.label}
+            </Link>
+        );
+    }
+
+    return (
+        <div className="group relative">
+            <button
+                type="button"
+                aria-haspopup="menu"
+                className={`${className} inline-flex items-center gap-1`}
+            >
+                {item.label}
+                <ChevronDown
+                    className="size-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                    aria-hidden="true"
+                />
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <ul
+                    role="menu"
+                    className="rounded-xl border border-white/10 bg-front-panel py-2 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]"
+                >
+                    {item.children.map((child) => (
+                        <li key={child.href} role="none">
+                            <Link
+                                href={child.href}
+                                role="menuitem"
+                                className="block px-4 py-2.5 text-[13.5px] text-front-steel transition-colors hover:bg-white/5 hover:text-white focus-visible:bg-white/5 focus-visible:text-white focus-visible:outline-none"
+                            >
+                                {child.label}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+}
+
+function MobileNavBlock({ item, onNavigate }) {
+    const hasChildren = Array.isArray(item.children) && item.children.length > 0;
+
+    if (!hasChildren) {
+        return (
+            <a
+                href={item.href}
+                onClick={onNavigate}
+                className="rounded-md px-2 py-3 text-[15px] text-white/85 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
+            >
                 {item.label}
             </a>
         );
     }
 
     return (
-        <Link href={item.href} className={className}>
-            {item.label}
-        </Link>
+        <div className="px-2 py-2">
+            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-front-steel-dim">
+                {item.label}
+            </p>
+            <ul className="mt-1 flex flex-col">
+                {item.children.map((child) => (
+                    <li key={child.href}>
+                        <Link
+                            href={child.href}
+                            onClick={onNavigate}
+                            className="block rounded-md py-2.5 text-[15px] text-white/85 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
+                        >
+                            {child.label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }

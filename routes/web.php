@@ -12,6 +12,10 @@ Route::get('/', function () {
     return Inertia::render('Front/Home');
 })->name('home');
 
+Route::get('/services/web-development', function () {
+    return Inertia::render('Front/ServicesWebDevelopment');
+})->name('services.web-development');
+
 Route::get('/portfolio', function () {
     return Inertia::render('Front/Portfolio');
 })->name('portfolio');

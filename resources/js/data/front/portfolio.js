@@ -415,6 +415,12 @@ export function getProjectBySlug(slug) {
     return projects.find((project) => project.slug === slug) ?? null;
 }
 
+export function getProjectsByCategory(category, limit = null) {
+    const list = projects.filter((project) => project.category === category);
+    if (typeof limit === "number") return list.slice(0, limit);
+    return list;
+}
+
 export function getRelatedProjects(slug, limit = 3) {
     const current = getProjectBySlug(slug);
     if (!current) return projects.slice(0, limit);

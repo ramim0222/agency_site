@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 import WhatsAppButton from "@/Components/Front/WhatsAppButton";
 
-export default function CtaBand({ content }) {
+export default function CtaBand({ content, whatsappMessage }) {
     const sectionRef = useRef(null);
     const glowRef = useRef(null);
 
@@ -60,7 +60,7 @@ export default function CtaBand({ content }) {
                         {content.primaryCta.label}
                         <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
-                    <WhatsAppButton />
+                    <WhatsAppButton message={whatsappMessage} />
                 </div>
             </div>
         </section>

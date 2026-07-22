@@ -118,6 +118,18 @@ Route::get('/saas/{slug}', function (string $slug) {
     ]);
 })->name('saas.show');
 
+Route::get('/landing/{slug}', function (string $slug) {
+    $slugs = require resource_path('data/front/campaigns.php');
+
+    if (! in_array($slug, $slugs, true)) {
+        abort(404);
+    }
+
+    return Inertia::render('Front/CampaignLanding', [
+        'slug' => $slug,
+    ]);
+})->name('landing.show');
+
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:8,1')

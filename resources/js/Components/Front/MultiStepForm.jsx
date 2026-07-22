@@ -76,34 +76,43 @@ function readLeadContext() {
     return { service_type: "", message: "" };
 }
 
-export default function MultiStepForm() {
+export default function MultiStepForm({ defaults = {} }) {
     const [step, setStep] = useState(1);
     const [localErrors, setLocalErrors] = useState({});
     const panelRef = useRef(null);
     const directionRef = useRef(1);
 
     const leadContext = readLeadContext();
+    const attr = readAttribution();
 
     const { data, setData, post, processing, errors, clearErrors } = useForm({
-        service_type: leadContext.service_type,
+        service_type:
+            leadContext.service_type || defaults.service_type || "",
         budget: "",
         timeline: "",
         name: "",
         email: "",
         phone: "",
-        message: leadContext.message,
-        ...readAttribution(),
+        message: leadContext.message || defaults.message || "",
+        ...attr,
+        utm_campaign:
+            attr.utm_campaign || defaults.utm_campaign || "",
     });
 
     useEffect(() => {
         // Re-capture attribution + lead context after hydration (SSR mismatch).
-        const attr = readAttribution();
-        Object.entries(attr).forEach(([key, value]) => {
+        const nextAttr = readAttribution();
+        Object.entries(nextAttr).forEach(([key, value]) => {
             if (value) setData(key, value);
         });
+        if (!nextAttr.utm_campaign && defaults.utm_campaign) {
+            setData("utm_campaign", defaults.utm_campaign);
+        }
         const ctx = readLeadContext();
         if (ctx.service_type) setData("service_type", ctx.service_type);
+        else if (defaults.service_type) setData("service_type", defaults.service_type);
         if (ctx.message) setData("message", ctx.message);
+        else if (defaults.message) setData("message", defaults.message);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -28,6 +28,10 @@ Route::get('/services/saas', function () {
     return Inertia::render('Front/ServicesSaas');
 })->name('services.saas');
 
+Route::get('/pricing', function () {
+    return Inertia::render('Front/Pricing');
+})->name('pricing');
+
 Route::get('/portfolio', function () {
     return Inertia::render('Front/Portfolio');
 })->name('portfolio');

@@ -30,6 +30,10 @@ export const saasService = {
             label: "Open the SaaS catalog",
             href: "/saas",
         },
+        secondaryCta: {
+            label: "SaaS FAQs",
+            href: "/faq#saas",
+        },
     },
 };
 

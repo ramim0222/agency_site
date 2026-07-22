@@ -38,6 +38,7 @@ export const primaryNav = [
     { label: "SaaS", href: "/saas" },
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
     { label: "Blog", href: "/blog" },
 ];
 
@@ -170,6 +171,7 @@ export const footerLinks = {
         { label: "Portfolio", href: "/portfolio" },
         { label: "SaaS products", href: "/saas" },
         { label: "Pricing", href: "/pricing" },
+        { label: "FAQ", href: "/faq" },
         { label: "Blog", href: "/blog" },
         { label: "Contact", href: "/contact" },
     ],

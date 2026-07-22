@@ -229,6 +229,8 @@ export default function Pricing() {
                 <FaqAccordion
                     items={pricingFaq}
                     title="Pricing questions"
+                    moreHref="/faq#pricing"
+                    moreLabel="All FAQs"
                 />
 
                 <CtaBand

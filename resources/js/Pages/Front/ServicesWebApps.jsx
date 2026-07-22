@@ -92,6 +92,8 @@ export default function ServicesWebApps() {
                 <FaqAccordion
                     items={webAppsFaq}
                     title={webAppsService.faqTitle}
+                    moreHref="/faq#process"
+                    moreLabel="All FAQs"
                 />
 
                 <CtaBand

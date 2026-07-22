@@ -100,6 +100,8 @@ export default function ServicesMobileApps() {
                 <FaqAccordion
                     items={mobileAppsFaq}
                     title={mobileAppsService.faqTitle}
+                    moreHref="/faq#process"
+                    moreLabel="All FAQs"
                 />
 
                 <CtaBand

@@ -36,6 +36,10 @@ Route::get('/about', function () {
     return Inertia::render('Front/About');
 })->name('about');
 
+Route::get('/faq', function () {
+    return Inertia::render('Front/Faq');
+})->name('faq');
+
 Route::get('/blog', function () {
     return Inertia::render('Front/Blog');
 })->name('blog');

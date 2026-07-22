@@ -1,15 +1,32 @@
-import { useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "@inertiajs/react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Reveal from "@/Components/Front/Reveal";
 import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
+import { cn } from "@/lib/utils";
 
 /**
- * Product FAQ — one open panel, GSAP height, keyboard-friendly buttons.
- * Skills: gsap-react (panel height), ui-ux-pro-max (aria-expanded).
+ * Product / page FAQ — one open panel, GSAP height, keyboard-friendly.
+ * Skills: gsap-react (panel height), ui-ux-pro-max (aria-expanded, empty).
  */
-export default function FaqAccordion({ items = [], title = "Questions" }) {
+export default function FaqAccordion({
+    items = [],
+    title = "Questions",
+    eyebrow = "FAQ",
+    showHeading = true,
+    emptyMessage = "FAQ for this topic is coming soon.",
+    moreHref,
+    moreLabel = "All FAQs",
+    className,
+    listClassName,
+    topicKey,
+}) {
     const [openIndex, setOpenIndex] = useState(0);
     const listRef = useRef(null);
+
+    useEffect(() => {
+        setOpenIndex(items.length ? 0 : -1);
+    }, [items, topicKey]);
 
     useGSAP(
         () => {
@@ -46,31 +63,63 @@ export default function FaqAccordion({ items = [], title = "Questions" }) {
                 }
             });
         },
-        { scope: listRef, dependencies: [openIndex, items] }
+        { scope: listRef, dependencies: [openIndex, items, topicKey] }
     );
 
     if (!items.length) {
         return (
-            <section className="front-container py-10">
-                <p className="rounded-2xl border border-dashed border-white/12 px-6 py-12 text-center text-[14px] text-front-steel">
-                    FAQ for this product is coming soon.
+            <section className={cn("front-container py-10", className)}>
+                <p
+                    className="rounded-2xl border border-dashed border-white/12 px-6 py-12 text-center text-[14px] text-front-steel"
+                    role="status"
+                >
+                    {emptyMessage}
                 </p>
             </section>
         );
     }
 
     return (
-        <section className="front-container py-12 lg:py-16">
-            <Reveal>
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-front-ember-soft">
-                    FAQ
-                </p>
-                <h2 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.02em] text-white sm:text-[1.75rem]">
-                    {title}
-                </h2>
-            </Reveal>
+        <section
+            className={cn("front-container py-12 lg:py-16", className)}
+            id={topicKey ? `faq-panel-${topicKey}` : undefined}
+            role={topicKey ? "tabpanel" : undefined}
+            aria-labelledby={topicKey ? `faq-tab-${topicKey}` : undefined}
+        >
+            {showHeading ? (
+                <Reveal>
+                    <div className="flex flex-wrap items-end justify-between gap-3">
+                        <div>
+                            {eyebrow ? (
+                                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-front-ember-soft">
+                                    {eyebrow}
+                                </p>
+                            ) : null}
+                            <h2 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.02em] text-white sm:text-[1.75rem]">
+                                {title}
+                            </h2>
+                        </div>
+                        {moreHref ? (
+                            <Link
+                                href={moreHref}
+                                className="group inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.1em] text-front-steel transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
+                            >
+                                {moreLabel}
+                                <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </Link>
+                        ) : null}
+                    </div>
+                </Reveal>
+            ) : null}
 
-            <ul ref={listRef} className="mt-8 divide-y divide-white/10 border-y border-white/10">
+            <ul
+                ref={listRef}
+                className={cn(
+                    "divide-y divide-white/10 border-y border-white/10",
+                    showHeading ? "mt-8" : "mt-0",
+                    listClassName
+                )}
+            >
                 {items.map((item, index) => {
                     const open = index === openIndex;
                     return (
@@ -89,7 +138,9 @@ export default function FaqAccordion({ items = [], title = "Questions" }) {
                                     </span>
                                     <ChevronDown
                                         className={`size-4 shrink-0 text-front-steel transition-transform duration-300 ${
-                                            open ? "rotate-180 text-front-ember-soft" : ""
+                                            open
+                                                ? "rotate-180 text-front-ember-soft"
+                                                : ""
                                         }`}
                                         aria-hidden="true"
                                     />

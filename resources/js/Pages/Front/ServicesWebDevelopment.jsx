@@ -92,6 +92,8 @@ export default function ServicesWebDevelopment() {
                 <FaqAccordion
                     items={webDevFaq}
                     title={webDevService.faqTitle}
+                    moreHref="/faq#process"
+                    moreLabel="All FAQs"
                 />
 
                 <CtaBand

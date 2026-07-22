@@ -146,6 +146,8 @@ export default function SaasShow({ slug }) {
                 <FaqAccordion
                     items={product.faq}
                     title={`About ${product.name}`}
+                    moreHref="/faq#saas"
+                    moreLabel="SaaS FAQs"
                 />
 
                 <RelatedProducts products={related} />

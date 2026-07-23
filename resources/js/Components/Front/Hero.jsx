@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 import { ArrowUpRight } from "lucide-react";
 import { EASE, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 import { hero } from "@/data/front/home";
+import HeroLiquidBackground from "@/Components/Front/HeroLiquidBackground";
 import StatusChip from "@/Components/Front/StatusChip";
 import WhatsAppButton from "@/Components/Front/WhatsAppButton";
 
@@ -87,12 +88,7 @@ export default function Hero() {
             ref={sectionRef}
             className="relative overflow-hidden bg-front-graphite pt-32 pb-24 lg:pt-40 lg:pb-32"
         >
-            <img
-                src={hero.background.src}
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-10"
-            />
+            <HeroLiquidBackground src={hero.background.src} className="opacity-10" />
             <div className="front-noise" />
             <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-[70%] opacity-[0.14]"

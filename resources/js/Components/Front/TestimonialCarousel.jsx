@@ -8,86 +8,131 @@ const AUTOPLAY_MS = 6000;
 export default function TestimonialCarousel({ testimonials }) {
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
-    const slidesRef = useRef(null);
+    const rootRef = useRef(null);
+    const contentRef = useRef(null);
+    const indexRef = useRef(0);
+    const animatingRef = useRef(false);
     const reduced = useRef(prefersReducedMotion());
 
-    const { contextSafe } = useGSAP({ scope: slidesRef });
+    indexRef.current = index;
 
-    const goTo = contextSafe((next) => {
-        const slides = gsap.utils.toArray("[data-testimonial-slide]", slidesRef.current);
-        const current = slides[index];
-        const target = slides[(next + slides.length) % slides.length];
-        if (!current || !target || current === target) {
-            setIndex((next + slides.length) % slides.length);
+    const { contextSafe } = useGSAP(
+        () => {
+            if (contentRef.current) {
+                gsap.set(contentRef.current, { autoAlpha: 1, y: 0 });
+            }
+        },
+        { scope: rootRef }
+    );
+
+    const resetContent = contextSafe(() => {
+        animatingRef.current = false;
+        if (contentRef.current) {
+            gsap.killTweensOf(contentRef.current);
+            gsap.set(contentRef.current, { autoAlpha: 1, y: 0, clearProps: "transform" });
+        }
+    });
+
+    const goTo = contextSafe((nextIndex) => {
+        const count = testimonials.length;
+        if (!count) return;
+
+        const normalized = ((nextIndex % count) + count) % count;
+        if (normalized === indexRef.current) return;
+
+        if (animatingRef.current) {
+            gsap.killTweensOf(contentRef.current);
+            animatingRef.current = false;
+        }
+
+        const el = contentRef.current;
+        if (!el || reduced.current) {
+            indexRef.current = normalized;
+            setIndex(normalized);
             return;
         }
 
-        if (reduced.current) {
-            gsap.set(current, { opacity: 0, pointerEvents: "none" });
-            gsap.set(target, { opacity: 1, pointerEvents: "auto" });
-        } else {
-            gsap.to(current, {
-                opacity: 0,
-                y: -12,
-                duration: 0.35,
-                ease: EASE.soft,
-                pointerEvents: "none",
-            });
-            gsap.fromTo(
-                target,
-                { opacity: 0, y: 12 },
-                { opacity: 1, y: 0, duration: 0.5, ease: EASE.out, pointerEvents: "auto" }
-            );
-        }
-
-        setIndex((next + slides.length) % slides.length);
+        animatingRef.current = true;
+        gsap.to(el, {
+            autoAlpha: 0,
+            y: -12,
+            duration: 0.35,
+            ease: EASE.soft,
+            onComplete: () => {
+                indexRef.current = normalized;
+                setIndex(normalized);
+                gsap.fromTo(
+                    el,
+                    { autoAlpha: 0, y: 12 },
+                    {
+                        autoAlpha: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: EASE.out,
+                        onComplete: () => {
+                            animatingRef.current = false;
+                        },
+                    }
+                );
+            },
+        });
     });
 
-    const next = useCallback(() => goTo(index + 1), [goTo, index]);
-    const prev = useCallback(() => goTo(index - 1), [goTo, index]);
+    const next = useCallback(() => goTo(indexRef.current + 1), [goTo]);
+    const prev = useCallback(() => goTo(indexRef.current - 1), [goTo]);
 
     useEffect(() => {
-        if (paused || reduced.current) return;
-        const id = window.setInterval(next, AUTOPLAY_MS);
+        const tick = () => {
+            if (paused || reduced.current || document.hidden || animatingRef.current) return;
+            goTo(indexRef.current + 1);
+        };
+
+        const id = window.setInterval(tick, AUTOPLAY_MS);
         return () => window.clearInterval(id);
-    }, [next, paused]);
+    }, [goTo, paused]);
+
+    useEffect(() => {
+        const onVisibility = () => {
+            if (document.hidden) return;
+            resetContent();
+        };
+
+        document.addEventListener("visibilitychange", onVisibility);
+        return () => document.removeEventListener("visibilitychange", onVisibility);
+    }, [resetContent]);
+
+    const active = testimonials[index];
 
     return (
         <div
+            ref={rootRef}
             className="relative"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
         >
-            <div
-                ref={slidesRef}
-                className="relative min-h-[220px] rounded-2xl border border-front-ink/10 bg-white px-7 py-9 sm:min-h-[200px] sm:px-10 sm:py-10"
-            >
+            <div className="relative min-h-[220px] rounded-2xl border border-front-ink/10 bg-white px-7 py-9 sm:min-h-[200px] sm:px-10 sm:py-10">
                 <Quote className="size-7 text-front-ember/70" strokeWidth={1.75} />
 
-                {testimonials.map((t, i) => (
-                    <figure
-                        key={t.key}
-                        data-testimonial-slide
-                        className="absolute inset-x-7 top-16 sm:inset-x-10 sm:top-[4.25rem]"
-                        style={{ opacity: i === 0 ? 1 : 0, pointerEvents: i === 0 ? "auto" : "none" }}
-                        aria-hidden={i !== index}
-                    >
-                        <blockquote className="max-w-[52ch] text-[18px] leading-relaxed text-front-ink sm:text-[20px]">
-                            "{t.quote}"
-                        </blockquote>
-                        <figcaption className="mt-5 flex items-center gap-3">
-                            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-front-ink font-mono text-[12px] font-medium text-front-paper">
-                                {initials(t.name)}
-                            </span>
-                            <span className="text-[13.5px] text-front-slate">
-                                <span className="font-medium text-front-ink">{t.name}</span> —{" "}
-                                {t.role}, {t.company}
-                            </span>
-                        </figcaption>
-                    </figure>
-                ))}
+                <div ref={contentRef} className="absolute inset-x-7 top-16 sm:inset-x-10 sm:top-[4.25rem]">
+                    {active ? (
+                        <figure key={active.key}>
+                            <blockquote className="max-w-[52ch] text-[18px] leading-relaxed text-front-ink sm:text-[20px]">
+                                "{active.quote}"
+                            </blockquote>
+                            <figcaption className="mt-5 flex items-center gap-3">
+                                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-front-ink font-mono text-[12px] font-medium text-front-paper">
+                                    {initials(active.name)}
+                                </span>
+                                <span className="text-[13.5px] text-front-slate">
+                                    <span className="font-medium text-front-ink">{active.name}</span> —{" "}
+                                    {active.role}, {active.company}
+                                </span>
+                            </figcaption>
+                        </figure>
+                    ) : null}
+                </div>
             </div>
 
             <div className="mt-5 flex items-center justify-between">

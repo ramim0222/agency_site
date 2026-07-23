@@ -1,0 +1,1764 @@
+{
+  "communities": {
+    "0": [
+      "app_http_controllers_auth_authenticatedsessioncontroller",
+      "app_http_controllers_auth_authenticatedsessioncontroller_authenticatedsessioncontroller",
+      "app_http_controllers_auth_authenticatedsessioncontroller_authenticatedsessioncontroller_create",
+      "app_http_controllers_auth_authenticatedsessioncontroller_authenticatedsessioncontroller_destroy",
+      "app_http_controllers_auth_authenticatedsessioncontroller_authenticatedsessioncontroller_store",
+      "app_http_controllers_auth_confirmablepasswordcontroller",
+      "app_http_controllers_auth_confirmablepasswordcontroller_confirmablepasswordcontroller",
+      "app_http_controllers_auth_confirmablepasswordcontroller_confirmablepasswordcontroller_show",
+      "app_http_controllers_auth_confirmablepasswordcontroller_confirmablepasswordcontroller_store",
+      "app_http_controllers_auth_emailverificationnotificationcontroller",
+      "app_http_controllers_auth_emailverificationnotificationcontroller_emailverificationnotificationcontroller",
+      "app_http_controllers_auth_emailverificationnotificationcontroller_emailverificationnotificationcontroller_store",
+      "app_http_controllers_auth_emailverificationpromptcontroller",
+      "app_http_controllers_auth_emailverificationpromptcontroller_emailverificationpromptcontroller",
+      "app_http_controllers_auth_emailverificationpromptcontroller_emailverificationpromptcontroller_invoke",
+      "app_http_controllers_auth_newpasswordcontroller",
+      "app_http_controllers_auth_newpasswordcontroller_newpasswordcontroller",
+      "app_http_controllers_auth_newpasswordcontroller_newpasswordcontroller_create",
+      "app_http_controllers_auth_newpasswordcontroller_newpasswordcontroller_store",
+      "app_http_controllers_auth_passwordcontroller",
+      "app_http_controllers_auth_passwordcontroller_passwordcontroller",
+      "app_http_controllers_auth_passwordcontroller_passwordcontroller_update",
+      "app_http_controllers_auth_passwordresetlinkcontroller",
+      "app_http_controllers_auth_passwordresetlinkcontroller_passwordresetlinkcontroller",
+      "app_http_controllers_auth_passwordresetlinkcontroller_passwordresetlinkcontroller_create",
+      "app_http_controllers_auth_passwordresetlinkcontroller_passwordresetlinkcontroller_store",
+      "app_http_controllers_auth_registeredusercontroller",
+      "app_http_controllers_auth_registeredusercontroller_registeredusercontroller",
+      "app_http_controllers_auth_registeredusercontroller_registeredusercontroller_create",
+      "app_http_controllers_auth_registeredusercontroller_registeredusercontroller_store",
+      "app_http_controllers_auth_verifyemailcontroller",
+      "app_http_controllers_auth_verifyemailcontroller_verifyemailcontroller",
+      "app_http_controllers_auth_verifyemailcontroller_verifyemailcontroller_invoke",
+      "app_http_controllers_controller",
+      "app_http_controllers_controller_controller",
+      "app_http_controllers_front_contactcontroller",
+      "app_http_controllers_front_contactcontroller_contactcontroller",
+      "app_http_controllers_front_contactcontroller_contactcontroller_show",
+      "app_http_controllers_front_contactcontroller_contactcontroller_store",
+      "app_http_controllers_front_contactcontroller_contactcontroller_thankyou",
+      "app_http_controllers_profilecontroller",
+      "app_http_controllers_profilecontroller_profilecontroller",
+      "app_http_controllers_profilecontroller_profilecontroller_destroy",
+      "app_http_controllers_profilecontroller_profilecontroller_edit",
+      "app_http_controllers_profilecontroller_profilecontroller_update",
+      "app_http_controllers_superadmin_dashboardcontroller",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller_invoke",
+      "app_http_controllers_superadmin_leadcontroller",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_archive",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_bulkupdatestatus",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_destroy",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_export",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_filteredleads",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_index",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_leadrow",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_restore",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_storeactivity",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_updatestatus",
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_validatedfilters",
+      "app_http_controllers_superadmin_sourcecontroller",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller_campaignrows",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller_index",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller_landingrows",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller_leadsinrange",
+      "app_http_controllers_superadmin_sourcecontroller_sourcecontroller_validatedrange",
+      "app_http_middleware_handleinertiarequests",
+      "app_http_middleware_handleinertiarequests_handleinertiarequests",
+      "app_http_middleware_handleinertiarequests_handleinertiarequests_share",
+      "app_http_middleware_handleinertiarequests_handleinertiarequests_version",
+      "app_http_requests_auth_loginrequest",
+      "app_models_lead_lead",
+      "app_models_lead_lead_casts",
+      "app_models_lead_lead_channellabel",
+      "app_models_lead_lead_getbudgetlabelattribute",
+      "app_models_lead_lead_getservicelabelattribute",
+      "app_models_lead_lead_getsourceattribute",
+      "app_models_lead_lead_gettimelinelabelattribute",
+      "app_models_lead_lead_isarchived",
+      "app_models_lead_lead_resolvesource",
+      "app_models_lead_lead_sourcelabel",
+      "app_models_lead_lead_statuslabel",
+      "app_models_lead_lead_whatsappdigits",
+      "app_services_whatsappnotifier",
+      "app_services_whatsappnotifier_whatsappnotifier",
+      "app_services_whatsappnotifier_whatsappnotifier_formatmessage",
+      "app_services_whatsappnotifier_whatsappnotifier_notifynewlead",
+      "config_mail",
+      "illuminate_foundation_auth_emailverificationrequest",
+      "illuminate_http_redirectresponse",
+      "illuminate_http_request",
+      "illuminate_support_collection",
+      "inertia_middleware",
+      "inertia_response",
+      "routes_auth",
+      "routes_web",
+      "symfony_component_httpfoundation_streamedresponse"
+    ],
+    "1": [
+      "composer",
+      "composer_allow_plugins_pestphp_pest_plugin",
+      "composer_allow_plugins_php_http_discovery",
+      "composer_autoload",
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_autoload_psr_4",
+      "composer_config",
+      "composer_config_allow_plugins",
+      "composer_config_optimize_autoloader",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages",
+      "composer_description",
+      "composer_extra",
+      "composer_extra_laravel",
+      "composer_keywords",
+      "composer_laravel_dont_discover",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_database_seeders",
+      "composer_psr_4_tests",
+      "composer_require",
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_fruitcake_laravel_debugbar",
+      "composer_require_dev_laravel_breeze",
+      "composer_require_dev_laravel_pail",
+      "composer_require_dev_laravel_pint",
+      "composer_require_dev_laravel_sail",
+      "composer_require_dev_mockery_mockery",
+      "composer_require_dev_nunomaduro_collision",
+      "composer_require_dev_pestphp_pest",
+      "composer_require_dev_pestphp_pest_plugin_laravel",
+      "composer_require_inertiajs_inertia_laravel",
+      "composer_require_laravel_framework",
+      "composer_require_laravel_sanctum",
+      "composer_require_laravel_tinker",
+      "composer_require_php",
+      "composer_require_tightenco_ziggy",
+      "composer_schema",
+      "composer_type",
+      "ref_agency",
+      "ref_laravel",
+      "ref_website"
+    ],
+    "2": [
+      "app_http_controllers_superadmin_leadcontroller_leadcontroller_show",
+      "app_models_lead",
+      "app_models_lead_lead_activities",
+      "app_models_leadactivity",
+      "app_models_leadactivity_leadactivity",
+      "app_models_leadactivity_leadactivity_lead",
+      "app_models_leadactivity_leadactivity_typelabel",
+      "app_models_leadactivity_leadactivity_user",
+      "app_models_user",
+      "app_models_user_user",
+      "app_models_user_user_casts",
+      "database_seeders_adminuserseeder",
+      "database_seeders_adminuserseeder_adminuserseeder",
+      "database_seeders_adminuserseeder_adminuserseeder_run",
+      "database_seeders_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder_run",
+      "database_seeders_leadseeder",
+      "database_seeders_leadseeder_leadseeder",
+      "database_seeders_leadseeder_leadseeder_run",
+      "illuminate_database_eloquent_factories_hasfactory",
+      "illuminate_database_eloquent_model",
+      "illuminate_database_eloquent_relations_belongsto",
+      "illuminate_database_eloquent_relations_hasmany",
+      "illuminate_database_seeder",
+      "illuminate_foundation_auth_user",
+      "illuminate_notifications_notifiable",
+      "tests_feature_auth_authenticationtest",
+      "tests_feature_auth_emailverificationtest",
+      "tests_feature_auth_passwordconfirmationtest",
+      "tests_feature_auth_passwordresettest",
+      "tests_feature_auth_passwordupdatetest",
+      "tests_feature_profiletest",
+      "tests_feature_superadmin_dashboardtest",
+      "tests_feature_superadmin_leaddetailtest",
+      "tests_feature_superadmin_leadslisttest",
+      "tests_feature_superadmin_sourcesperformancetest",
+      "tests_unit_leadsourceresolutiontest"
+    ],
+    "3": [
+      "app_providers_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider_boot",
+      "app_providers_appserviceprovider_appserviceprovider_register",
+      "autoprefixer",
+      "axios",
+      "concurrently",
+      "headlessui_react",
+      "illuminate_support_serviceprovider",
+      "inertiajs_react",
+      "laravel_vite_plugin",
+      "package_devdependencies",
+      "package_devdependencies_autoprefixer",
+      "package_devdependencies_axios",
+      "package_devdependencies_concurrently",
+      "package_devdependencies_headlessui_react",
+      "package_devdependencies_inertiajs_react",
+      "package_devdependencies_laravel_vite_plugin",
+      "package_devdependencies_postcss",
+      "package_devdependencies_react",
+      "package_devdependencies_react_dom",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_forms",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_tw_animate_css",
+      "package_devdependencies_vite",
+      "package_devdependencies_vitejs_plugin_react",
+      "postcss",
+      "react",
+      "react_dom",
+      "tailwindcss",
+      "tailwindcss_forms",
+      "tailwindcss_vite",
+      "tw_animate_css",
+      "vite",
+      "vitejs_plugin_react"
+    ],
+    "4": [
+      "base_ui_react",
+      "class_variance_authority",
+      "clsx",
+      "fontsource_instrument_serif",
+      "fontsource_variable_geist",
+      "fontsource_variable_geist_mono",
+      "gsap",
+      "gsap_react",
+      "lucide_react",
+      "package",
+      "package_dependencies",
+      "package_dependencies_base_ui_react",
+      "package_dependencies_class_variance_authority",
+      "package_dependencies_clsx",
+      "package_dependencies_fontsource_instrument_serif",
+      "package_dependencies_fontsource_variable_geist",
+      "package_dependencies_fontsource_variable_geist_mono",
+      "package_dependencies_gsap",
+      "package_dependencies_gsap_react",
+      "package_dependencies_lucide_react",
+      "package_dependencies_shadcn",
+      "package_dependencies_tailwind_merge",
+      "package_name",
+      "package_private",
+      "package_schema",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_type",
+      "shadcn",
+      "tailwind_merge"
+    ],
+    "5": [
+      "components",
+      "components_aliases",
+      "components_aliases_components",
+      "components_aliases_hooks",
+      "components_aliases_lib",
+      "components_aliases_ui",
+      "components_aliases_utils",
+      "components_iconlibrary",
+      "components_menuaccent",
+      "components_menucolor",
+      "components_registries",
+      "components_rsc",
+      "components_rtl",
+      "components_schema",
+      "components_style",
+      "components_tailwind",
+      "components_tailwind_basecolor",
+      "components_tailwind_config",
+      "components_tailwind_css",
+      "components_tailwind_cssvariables",
+      "components_tailwind_prefix",
+      "components_tsx"
+    ],
+    "6": [
+      "composer_scripts",
+      "composer_scripts_dev",
+      "composer_scripts_post_autoload_dump",
+      "composer_scripts_post_create_project_cmd",
+      "composer_scripts_post_root_package_install",
+      "composer_scripts_post_update_cmd",
+      "composer_scripts_test",
+      "ref_composer_config_disableprocesstimeout",
+      "ref_npx_concurrently_c_93c5fd_c4b5fd_fdba74_php_artisan_serve_php_artisan_queue_listen_tries_1_npm_run_dev_names_server_queue_vite",
+      "ref_php_artisan_clear_compiled",
+      "ref_php_artisan_config_clear",
+      "ref_php_artisan_config_clear_ansi",
+      "ref_php_artisan_key_generate_ansi",
+      "ref_php_artisan_migrate_graceful_ansi",
+      "ref_php_artisan_package_discover_ansi",
+      "ref_php_artisan_test",
+      "ref_php_artisan_vendor_publish_tag_laravel_assets_ansi_force",
+      "ref_php_r_file_exists_database_database_sqlite_touch_database_database_sqlite",
+      "ref_php_r_file_exists_env_copy_env_example_env"
+    ],
+    "7": [
+      "resources_js_data_front_saas",
+      "resources_js_data_front_saas_categorylabels",
+      "resources_js_data_front_saas_categorypages",
+      "resources_js_data_front_saas_contacthrefforplan",
+      "resources_js_data_front_saas_formatstartingprice",
+      "resources_js_data_front_saas_getcategorykeyfromslug",
+      "resources_js_data_front_saas_getcategorypage",
+      "resources_js_data_front_saas_getproductbyslug",
+      "resources_js_data_front_saas_getproductdetail",
+      "resources_js_data_front_saas_getproductsbycategory",
+      "resources_js_data_front_saas_getrelatedproducts",
+      "resources_js_data_front_saas_isvalidcategoryslug",
+      "resources_js_data_front_saas_productdetails",
+      "resources_js_data_front_saas_products",
+      "resources_js_data_front_saas_saascategories",
+      "resources_js_data_front_saas_saaspage",
+      "resources_js_data_front_saas_whatsappmessageforproduct"
+    ],
+    "8": [
+      "app_http_requests_auth_loginrequest_loginrequest",
+      "app_http_requests_auth_loginrequest_loginrequest_authenticate",
+      "app_http_requests_auth_loginrequest_loginrequest_authorize",
+      "app_http_requests_auth_loginrequest_loginrequest_ensureisnotratelimited",
+      "app_http_requests_auth_loginrequest_loginrequest_rules",
+      "app_http_requests_auth_loginrequest_loginrequest_throttlekey",
+      "app_http_requests_front_storeleadrequest",
+      "app_http_requests_front_storeleadrequest_storeleadrequest",
+      "app_http_requests_front_storeleadrequest_storeleadrequest_authorize",
+      "app_http_requests_front_storeleadrequest_storeleadrequest_messages",
+      "app_http_requests_front_storeleadrequest_storeleadrequest_rules",
+      "app_http_requests_profileupdaterequest",
+      "app_http_requests_profileupdaterequest_profileupdaterequest",
+      "app_http_requests_profileupdaterequest_profileupdaterequest_rules",
+      "illuminate_foundation_http_formrequest"
+    ],
+    "9": [
+      "resources_js_data_front_home",
+      "resources_js_data_front_home_brand",
+      "resources_js_data_front_home_finalcta",
+      "resources_js_data_front_home_footerlinks",
+      "resources_js_data_front_home_hero",
+      "resources_js_data_front_home_primarynav",
+      "resources_js_data_front_home_services",
+      "resources_js_data_front_home_stats",
+      "resources_js_data_front_home_techstack",
+      "resources_js_data_front_home_testimonials",
+      "resources_js_data_front_home_whatsapp",
+      "resources_js_data_front_home_whatsapphref"
+    ],
+    "10": [
+      "resources_js_data_front_portfolio",
+      "resources_js_data_front_portfolio_casestudycta",
+      "resources_js_data_front_portfolio_categorylabels",
+      "resources_js_data_front_portfolio_filtertabs",
+      "resources_js_data_front_portfolio_getprojectbyslug",
+      "resources_js_data_front_portfolio_getprojectsbycategory",
+      "resources_js_data_front_portfolio_getrelatedprojects",
+      "resources_js_data_front_portfolio_homeportfolio",
+      "resources_js_data_front_portfolio_portfoliopage",
+      "resources_js_data_front_portfolio_projects",
+      "resources_js_data_front_portfolio_stackbadges",
+      "resources_js_data_front_portfolio_stackmeta"
+    ],
+    "11": [
+      "app_mail_leadreceived",
+      "app_mail_leadreceived_leadreceived",
+      "app_mail_leadreceived_leadreceived_attachments",
+      "app_mail_leadreceived_leadreceived_construct",
+      "app_mail_leadreceived_leadreceived_content",
+      "app_mail_leadreceived_leadreceived_envelope",
+      "illuminate_bus_queueable",
+      "illuminate_mail_mailable",
+      "illuminate_mail_mailables_content",
+      "illuminate_mail_mailables_envelope",
+      "illuminate_queue_serializesmodels"
+    ],
+    "12": [
+      "database_factories_leadfactory",
+      "database_factories_leadfactory_leadfactory",
+      "database_factories_leadfactory_leadfactory_definition",
+      "database_factories_leadfactory_leadfactory_thisweek",
+      "database_factories_leadfactory_leadfactory_today",
+      "database_factories_userfactory",
+      "database_factories_userfactory_userfactory",
+      "database_factories_userfactory_userfactory_definition",
+      "database_factories_userfactory_userfactory_unverified",
+      "illuminate_database_eloquent_factories_factory",
+      "static"
+    ],
+    "13": [
+      "resources_js_data_front_blog",
+      "resources_js_data_front_blog_authors",
+      "resources_js_data_front_blog_blogcategories",
+      "resources_js_data_front_blog_blogpage",
+      "resources_js_data_front_blog_blogposts",
+      "resources_js_data_front_blog_categorylabels",
+      "resources_js_data_front_blog_getauthor",
+      "resources_js_data_front_blog_getpostbyslug",
+      "resources_js_data_front_blog_getrelatedposts",
+      "resources_js_data_front_blog_posts",
+      "resources_js_data_front_blog_splitbodyatcta"
+    ],
+    "14": [
+      "jsconfig",
+      "jsconfig_compileroptions",
+      "jsconfig_compileroptions_baseurl",
+      "jsconfig_compileroptions_paths",
+      "jsconfig_exclude",
+      "jsconfig_paths_ziggy_js",
+      "ref_node_modules",
+      "ref_public",
+      "ref_vendor_tightenco_ziggy"
+    ],
+    "15": [
+      "resources_js_pages_profile_edit",
+      "resources_js_pages_profile_edit_edit",
+      "resources_js_pages_profile_partials_deleteuserform",
+      "resources_js_pages_profile_partials_deleteuserform_deleteuserform",
+      "resources_js_pages_profile_partials_updatepasswordform",
+      "resources_js_pages_profile_partials_updatepasswordform_updatepasswordform",
+      "resources_js_pages_profile_partials_updateprofileinformationform",
+      "resources_js_pages_profile_partials_updateprofileinformationform_updateprofileinformation"
+    ],
+    "16": [
+      "resources_js_data_front_about",
+      "resources_js_data_front_about_aboutpage",
+      "resources_js_data_front_about_aboutstack",
+      "resources_js_data_front_about_aboutstats",
+      "resources_js_data_front_about_mission",
+      "resources_js_data_front_about_partners",
+      "resources_js_data_front_about_team"
+    ],
+    "17": [
+      "resources_js_data_front_pricing",
+      "resources_js_data_front_pricing_customdevsections",
+      "resources_js_data_front_pricing_hashtotab",
+      "resources_js_data_front_pricing_pricingfaq",
+      "resources_js_data_front_pricing_pricingpage",
+      "resources_js_data_front_pricing_pricingtabs",
+      "resources_js_data_front_pricing_saaspricingteaser"
+    ],
+    "18": [
+      "resources_js_components_dropdown",
+      "resources_js_components_dropdown_content",
+      "resources_js_components_dropdown_dropdown",
+      "resources_js_components_dropdown_dropdowncontext",
+      "resources_js_components_dropdown_dropdownlink",
+      "resources_js_components_dropdown_trigger"
+    ],
+    "19": [
+      "resources_js_data_front_careers",
+      "resources_js_data_front_careers_applicationcta",
+      "resources_js_data_front_careers_careerspage",
+      "resources_js_data_front_careers_culture",
+      "resources_js_data_front_careers_openroles",
+      "resources_js_data_front_careers_rolemailto"
+    ],
+    "20": [
+      "resources_js_data_front_contact",
+      "resources_js_data_front_contact_budgetoptions",
+      "resources_js_data_front_contact_contactpage",
+      "resources_js_data_front_contact_formsteps",
+      "resources_js_data_front_contact_serviceoptions",
+      "resources_js_data_front_contact_timelineoptions"
+    ],
+    "21": [
+      "resources_js_data_front_faq",
+      "resources_js_data_front_faq_faqbytopic",
+      "resources_js_data_front_faq_faqpage",
+      "resources_js_data_front_faq_faqtopics",
+      "resources_js_data_front_faq_getfaqitems",
+      "resources_js_data_front_faq_resolvefaqtopic"
+    ],
+    "22": [
+      "resources_js_data_front_servicesmobileapps",
+      "resources_js_data_front_servicesmobileapps_mobileappsfaq",
+      "resources_js_data_front_servicesmobileapps_mobileappspricing",
+      "resources_js_data_front_servicesmobileapps_mobileappsprocess",
+      "resources_js_data_front_servicesmobileapps_mobileappsservice",
+      "resources_js_data_front_servicesmobileapps_mobilestorebadges"
+    ],
+    "23": [
+      "resources_js_components_front_multistepform",
+      "resources_js_components_front_multistepform_multistepform",
+      "resources_js_components_front_multistepform_readattribution",
+      "resources_js_components_front_multistepform_readleadcontext",
+      "resources_js_components_front_multistepform_service_query_map"
+    ],
+    "24": [
+      "resources_js_data_front_servicessaas",
+      "resources_js_data_front_servicessaas_saasbenefits",
+      "resources_js_data_front_servicessaas_saasfeaturedslugs",
+      "resources_js_data_front_servicessaas_saasmarketplacecategories",
+      "resources_js_data_front_servicessaas_saasservice"
+    ],
+    "25": [
+      "resources_js_data_front_serviceswebapps",
+      "resources_js_data_front_serviceswebapps_webappsfaq",
+      "resources_js_data_front_serviceswebapps_webappspricing",
+      "resources_js_data_front_serviceswebapps_webappsprocess",
+      "resources_js_data_front_serviceswebapps_webappsservice"
+    ],
+    "26": [
+      "resources_js_data_front_serviceswebdevelopment",
+      "resources_js_data_front_serviceswebdevelopment_webdevfaq",
+      "resources_js_data_front_serviceswebdevelopment_webdevpricing",
+      "resources_js_data_front_serviceswebdevelopment_webdevprocess",
+      "resources_js_data_front_serviceswebdevelopment_webdevservice"
+    ],
+    "27": [
+      "resources_js_pages_superadmin_leads_index",
+      "resources_js_pages_superadmin_leads_index_buildquery",
+      "resources_js_pages_superadmin_leads_index_filtersummary",
+      "resources_js_pages_superadmin_leads_index_leadsindex",
+      "resources_js_pages_superadmin_leads_index_todraft"
+    ],
+    "28": [
+      "resources_js_components_auth_passwordstrengthmeter",
+      "resources_js_components_auth_passwordstrengthmeter_passwordstrengthmeter",
+      "resources_js_components_auth_passwordstrengthmeter_scorepassword",
+      "resources_js_components_auth_passwordstrengthmeter_tone_fill"
+    ],
+    "29": [
+      "resources_js_components_front_header",
+      "resources_js_components_front_header_header",
+      "resources_js_components_front_header_mobilenavblock",
+      "resources_js_components_front_header_navitem"
+    ],
+    "30": [
+      "resources_js_components_front_hero",
+      "resources_js_components_front_hero_headlinetoken",
+      "resources_js_components_front_hero_hero",
+      "resources_js_components_front_hero_tolines"
+    ],
+    "31": [
+      "resources_js_components_front_legaldoclayout",
+      "resources_js_components_front_legaldoclayout_dateformatter",
+      "resources_js_components_front_legaldoclayout_legalblock",
+      "resources_js_components_front_legaldoclayout_legaldoclayout"
+    ],
+    "32": [
+      "resources_js_components_front_socialsharebuttons",
+      "resources_js_components_front_socialsharebuttons_linkedinicon",
+      "resources_js_components_front_socialsharebuttons_socialsharebuttons",
+      "resources_js_components_front_socialsharebuttons_xicon"
+    ],
+    "33": [
+      "resources_js_components_superadmin_activitytimeline",
+      "resources_js_components_superadmin_activitytimeline_activitytimeline",
+      "resources_js_components_superadmin_activitytimeline_icons",
+      "resources_js_components_superadmin_activitytimeline_tone"
+    ],
+    "34": [
+      "resources_js_components_superadmin_adminsidebar",
+      "resources_js_components_superadmin_adminsidebar_adminsidebar",
+      "resources_js_components_superadmin_adminsidebar_isactive",
+      "resources_js_components_superadmin_adminsidebar_nav"
+    ],
+    "35": [
+      "resources_js_components_superadmin_leadtable",
+      "resources_js_components_superadmin_leadtable_columns",
+      "resources_js_components_superadmin_leadtable_leadtable",
+      "resources_js_components_superadmin_leadtable_sorticon"
+    ],
+    "36": [
+      "resources_js_data_front_thankyou",
+      "resources_js_data_front_thankyou_nextsteps",
+      "resources_js_data_front_thankyou_suggestedlinks",
+      "resources_js_data_front_thankyou_thankyoupage"
+    ],
+    "37": [
+      "database_migrations_0001_01_01_000000_create_users_table",
+      "database_migrations_0001_01_01_000000_create_users_table_down",
+      "database_migrations_0001_01_01_000000_create_users_table_up"
+    ],
+    "38": [
+      "database_migrations_0001_01_01_000001_create_cache_table",
+      "database_migrations_0001_01_01_000001_create_cache_table_down",
+      "database_migrations_0001_01_01_000001_create_cache_table_up"
+    ],
+    "39": [
+      "database_migrations_0001_01_01_000002_create_jobs_table",
+      "database_migrations_0001_01_01_000002_create_jobs_table_down",
+      "database_migrations_0001_01_01_000002_create_jobs_table_up"
+    ],
+    "40": [
+      "database_migrations_2026_07_22_194513_create_leads_table",
+      "database_migrations_2026_07_22_194513_create_leads_table_down",
+      "database_migrations_2026_07_22_194513_create_leads_table_up"
+    ],
+    "41": [
+      "database_migrations_2026_07_22_200740_create_lead_activities_table",
+      "database_migrations_2026_07_22_200740_create_lead_activities_table_down",
+      "database_migrations_2026_07_22_200740_create_lead_activities_table_up"
+    ],
+    "42": [
+      "database_migrations_2026_07_22_200741_add_archived_at_to_leads_table",
+      "database_migrations_2026_07_22_200741_add_archived_at_to_leads_table_down",
+      "database_migrations_2026_07_22_200741_add_archived_at_to_leads_table_up"
+    ],
+    "43": [
+      "illuminate_foundation_testing_testcase",
+      "tests_testcase",
+      "tests_testcase_testcase"
+    ],
+    "44": [
+      "resources_js_app",
+      "resources_js_app_setup",
+      "resources_js_bootstrap"
+    ],
+    "45": [
+      "resources_js_components_front_articleheader",
+      "resources_js_components_front_articleheader_articleheader",
+      "resources_js_components_front_articleheader_formatter"
+    ],
+    "46": [
+      "resources_js_components_front_blogpostcard",
+      "resources_js_components_front_blogpostcard_blogpostcard",
+      "resources_js_components_front_blogpostcard_formatter"
+    ],
+    "47": [
+      "resources_js_components_front_blogpreviewcard",
+      "resources_js_components_front_blogpreviewcard_blogpreviewcard",
+      "resources_js_components_front_blogpreviewcard_formatter"
+    ],
+    "48": [
+      "resources_js_components_front_footer",
+      "resources_js_components_front_footer_footer",
+      "resources_js_components_front_footer_footercolumn"
+    ],
+    "49": [
+      "resources_js_components_front_formstepcontactinfo",
+      "resources_js_components_front_formstepcontactinfo_field",
+      "resources_js_components_front_formstepcontactinfo_formstepcontactinfo"
+    ],
+    "50": [
+      "resources_js_components_front_formstepindicator",
+      "resources_js_components_front_formstepindicator_checkmark",
+      "resources_js_components_front_formstepindicator_formstepindicator"
+    ],
+    "51": [
+      "resources_js_components_front_portfoliocarousel",
+      "resources_js_components_front_portfoliocarousel_portfoliocarousel",
+      "resources_js_components_front_portfoliocarousel_visiblecountforwidth"
+    ],
+    "52": [
+      "resources_js_components_front_servicecard",
+      "resources_js_components_front_servicecard_icons",
+      "resources_js_components_front_servicecard_servicecard"
+    ],
+    "53": [
+      "resources_js_components_front_suggestedlinksgrid",
+      "resources_js_components_front_suggestedlinksgrid_suggestedcard",
+      "resources_js_components_front_suggestedlinksgrid_suggestedlinksgrid"
+    ],
+    "54": [
+      "resources_js_components_front_testimonialcarousel",
+      "resources_js_components_front_testimonialcarousel_initials",
+      "resources_js_components_front_testimonialcarousel_testimonialcarousel"
+    ],
+    "55": [
+      "resources_js_components_front_whatsappbutton",
+      "resources_js_components_front_whatsappbutton_whatsappbutton",
+      "resources_js_components_front_whatsappbutton_whatsappmark"
+    ],
+    "56": [
+      "resources_js_components_superadmin_addactivityform",
+      "resources_js_components_superadmin_addactivityform_addactivityform",
+      "resources_js_components_superadmin_addactivityform_type_hints"
+    ],
+    "57": [
+      "resources_js_components_superadmin_daterangepicker",
+      "resources_js_components_superadmin_daterangepicker_daterangepicker",
+      "resources_js_components_superadmin_daterangepicker_presets"
+    ],
+    "58": [
+      "resources_js_components_superadmin_leadbriefcard",
+      "resources_js_components_superadmin_leadbriefcard_leadbriefcard",
+      "resources_js_components_superadmin_leadbriefcard_row"
+    ],
+    "59": [
+      "resources_js_components_superadmin_leadkanbanboard",
+      "resources_js_components_superadmin_leadkanbanboard_columns",
+      "resources_js_components_superadmin_leadkanbanboard_leadkanbanboard"
+    ],
+    "60": [
+      "resources_js_components_superadmin_leadsbystatuswidget",
+      "resources_js_components_superadmin_leadsbystatuswidget_leadsbystatuswidget",
+      "resources_js_components_superadmin_leadsbystatuswidget_tone"
+    ],
+    "61": [
+      "resources_js_components_superadmin_sourcebadge",
+      "resources_js_components_superadmin_sourcebadge_sourcebadge",
+      "resources_js_components_superadmin_sourcebadge_tone"
+    ],
+    "62": [
+      "resources_js_components_superadmin_sourceconversionbreakdown",
+      "resources_js_components_superadmin_sourceconversionbreakdown_sourceconversionbreakdown",
+      "resources_js_components_superadmin_sourceconversionbreakdown_status_tone"
+    ],
+    "63": [
+      "resources_js_components_superadmin_statusbadge",
+      "resources_js_components_superadmin_statusbadge_statusbadge",
+      "resources_js_components_superadmin_statusbadge_tone"
+    ],
+    "64": [
+      "resources_js_components_superadmin_viewtoggle",
+      "resources_js_components_superadmin_viewtoggle_options",
+      "resources_js_components_superadmin_viewtoggle_viewtoggle"
+    ],
+    "65": [
+      "resources_js_components_ui_button",
+      "resources_js_components_ui_button_button",
+      "resources_js_components_ui_button_buttonvariants"
+    ],
+    "66": [
+      "resources_js_data_front_campaigns",
+      "resources_js_data_front_campaigns_campaigns",
+      "resources_js_data_front_campaigns_getcampaignbyslug"
+    ],
+    "67": [
+      "resources_js_lib_motion",
+      "resources_js_lib_motion_ease",
+      "resources_js_lib_motion_prefersreducedmotion"
+    ],
+    "68": [
+      "resources_js_pages_front_pricing",
+      "resources_js_pages_front_pricing_pricing",
+      "resources_js_pages_front_pricing_tabfromhash"
+    ],
+    "69": [
+      "tmp_screenshot",
+      "tmp_screenshot_outdir",
+      "tmp_screenshot_root"
+    ],
+    "70": [
+      "artisan",
+      "routes_console"
+    ],
+    "71": [
+      "bootstrap_app",
+      "illuminate_foundation_configuration_middleware"
+    ],
+    "72": [
+      "resources_js_components_applicationlogo",
+      "resources_js_components_applicationlogo_applicationlogo"
+    ],
+    "73": [
+      "resources_js_components_auth_adminauthlayout",
+      "resources_js_components_auth_adminauthlayout_adminauthlayout"
+    ],
+    "74": [
+      "resources_js_components_auth_adminforgotpasswordform",
+      "resources_js_components_auth_adminforgotpasswordform_adminforgotpasswordform"
+    ],
+    "75": [
+      "resources_js_components_auth_adminloginform",
+      "resources_js_components_auth_adminloginform_adminloginform"
+    ],
+    "76": [
+      "resources_js_components_auth_adminresetpasswordform",
+      "resources_js_components_auth_adminresetpasswordform_adminresetpasswordform"
+    ],
+    "77": [
+      "resources_js_components_auth_authbutton",
+      "resources_js_components_auth_authbutton_authbutton"
+    ],
+    "78": [
+      "resources_js_components_auth_authinput",
+      "resources_js_components_auth_authinput_authinput"
+    ],
+    "79": [
+      "resources_js_components_checkbox",
+      "resources_js_components_checkbox_checkbox"
+    ],
+    "80": [
+      "resources_js_components_dangerbutton",
+      "resources_js_components_dangerbutton_dangerbutton"
+    ],
+    "81": [
+      "resources_js_components_front_applicationcta",
+      "resources_js_components_front_applicationcta_applicationcta"
+    ],
+    "82": [
+      "resources_js_components_front_appstorebadgerow",
+      "resources_js_components_front_appstorebadgerow_appstorebadgerow"
+    ],
+    "83": [
+      "resources_js_components_front_articlecontent",
+      "resources_js_components_front_articlecontent_articlecontent"
+    ],
+    "84": [
+      "resources_js_components_front_authorbio",
+      "resources_js_components_front_authorbio_authorbio"
+    ],
+    "85": [
+      "resources_js_components_front_benefitssection",
+      "resources_js_components_front_benefitssection_benefitssection"
+    ],
+    "86": [
+      "resources_js_components_front_blogpostgrid",
+      "resources_js_components_front_blogpostgrid_blogpostgrid"
+    ],
+    "87": [
+      "resources_js_components_front_breadcrumb",
+      "resources_js_components_front_breadcrumb_breadcrumb"
+    ],
+    "88": [
+      "resources_js_components_front_casestudyheader",
+      "resources_js_components_front_casestudyheader_casestudyheader"
+    ],
+    "89": [
+      "resources_js_components_front_categoryfilter",
+      "resources_js_components_front_categoryfilter_categoryfilter"
+    ],
+    "90": [
+      "resources_js_components_front_categoryfiltertabs",
+      "resources_js_components_front_categoryfiltertabs_categoryfiltertabs"
+    ],
+    "91": [
+      "resources_js_components_front_categorygrid",
+      "resources_js_components_front_categorygrid_categorygrid"
+    ],
+    "92": [
+      "resources_js_components_front_categoryheader",
+      "resources_js_components_front_categoryheader_categoryheader"
+    ],
+    "93": [
+      "resources_js_components_front_challengesolutionblock",
+      "resources_js_components_front_challengesolutionblock_challengesolutionblock"
+    ],
+    "94": [
+      "resources_js_components_front_contactaboutplanbutton",
+      "resources_js_components_front_contactaboutplanbutton_contactaboutplanbutton"
+    ],
+    "95": [
+      "resources_js_components_front_ctaband",
+      "resources_js_components_front_ctaband_ctaband"
+    ],
+    "96": [
+      "resources_js_components_front_cultureblurb",
+      "resources_js_components_front_cultureblurb_cultureblurb"
+    ],
+    "97": [
+      "resources_js_components_front_embeddedleadform",
+      "resources_js_components_front_embeddedleadform_embeddedleadform"
+    ],
+    "98": [
+      "resources_js_components_front_faqaccordion",
+      "resources_js_components_front_faqaccordion_faqaccordion"
+    ],
+    "99": [
+      "resources_js_components_front_faqtopictabs",
+      "resources_js_components_front_faqtopictabs_faqtopictabs"
+    ],
+    "100": [
+      "resources_js_components_front_featurelist",
+      "resources_js_components_front_featurelist_featurelist"
+    ],
+    "101": [
+      "resources_js_components_front_filtertabs",
+      "resources_js_components_front_filtertabs_filtertabs"
+    ],
+    "102": [
+      "resources_js_components_front_formstepbudgettimeline",
+      "resources_js_components_front_formstepbudgettimeline_formstepbudgettimeline"
+    ],
+    "103": [
+      "resources_js_components_front_formstepservicetype",
+      "resources_js_components_front_formstepservicetype_formstepservicetype"
+    ],
+    "104": [
+      "resources_js_components_front_heroliquidbackground",
+      "resources_js_components_front_heroliquidbackground_heroliquidbackground"
+    ],
+    "105": [
+      "resources_js_components_front_inlinecta",
+      "resources_js_components_front_inlinecta_inlinecta"
+    ],
+    "106": [
+      "resources_js_components_front_landinghero",
+      "resources_js_components_front_landinghero_landinghero"
+    ],
+    "107": [
+      "resources_js_components_front_legaltableofcontents",
+      "resources_js_components_front_legaltableofcontents_legaltableofcontents"
+    ],
+    "108": [
+      "resources_js_components_front_minimalfooter",
+      "resources_js_components_front_minimalfooter_minimalfooter"
+    ],
+    "109": [
+      "resources_js_components_front_minimalheader",
+      "resources_js_components_front_minimalheader_minimalheader"
+    ],
+    "110": [
+      "resources_js_components_front_missionsection",
+      "resources_js_components_front_missionsection_missionsection"
+    ],
+    "111": [
+      "resources_js_components_front_nextstepstimeline",
+      "resources_js_components_front_nextstepstimeline_nextstepstimeline"
+    ],
+    "112": [
+      "resources_js_components_front_openroleslist",
+      "resources_js_components_front_openroleslist_openroleslist"
+    ],
+    "113": [
+      "resources_js_components_front_plancomparisontable",
+      "resources_js_components_front_plancomparisontable_plancomparisontable"
+    ],
+    "114": [
+      "resources_js_components_front_portfoliocard",
+      "resources_js_components_front_portfoliocard_portfoliocard"
+    ],
+    "115": [
+      "resources_js_components_front_portfoliogrid",
+      "resources_js_components_front_portfoliogrid_portfoliogrid"
+    ],
+    "116": [
+      "resources_js_components_front_pricingcard",
+      "resources_js_components_front_pricingcard_pricingcard"
+    ],
+    "117": [
+      "resources_js_components_front_pricingsnapshot",
+      "resources_js_components_front_pricingsnapshot_pricingsnapshot"
+    ],
+    "118": [
+      "resources_js_components_front_pricingtabswitcher",
+      "resources_js_components_front_pricingtabswitcher_pricingtabswitcher"
+    ],
+    "119": [
+      "resources_js_components_front_processtimeline",
+      "resources_js_components_front_processtimeline_processtimeline"
+    ],
+    "120": [
+      "resources_js_components_front_productheader",
+      "resources_js_components_front_productheader_productheader"
+    ],
+    "121": [
+      "resources_js_components_front_relatedportfolio",
+      "resources_js_components_front_relatedportfolio_relatedportfolio"
+    ],
+    "122": [
+      "resources_js_components_front_relatedposts",
+      "resources_js_components_front_relatedposts_relatedposts"
+    ],
+    "123": [
+      "resources_js_components_front_relatedproducts",
+      "resources_js_components_front_relatedproducts_relatedproducts"
+    ],
+    "124": [
+      "resources_js_components_front_resultsmetrics",
+      "resources_js_components_front_resultsmetrics_resultsmetrics"
+    ],
+    "125": [
+      "resources_js_components_front_reveal",
+      "resources_js_components_front_reveal_reveal"
+    ],
+    "126": [
+      "resources_js_components_front_rolecard",
+      "resources_js_components_front_rolecard_rolecard"
+    ],
+    "127": [
+      "resources_js_components_front_saaspricingteaser",
+      "resources_js_components_front_saaspricingteaser_saaspricingteaser"
+    ],
+    "128": [
+      "resources_js_components_front_saasproductcard",
+      "resources_js_components_front_saasproductcard_saasproductcard"
+    ],
+    "129": [
+      "resources_js_components_front_saasproductgrid",
+      "resources_js_components_front_saasproductgrid_saasproductgrid"
+    ],
+    "130": [
+      "resources_js_components_front_screenshotgallery",
+      "resources_js_components_front_screenshotgallery_screenshotgallery"
+    ],
+    "131": [
+      "resources_js_components_front_searchbar",
+      "resources_js_components_front_searchbar_searchbar"
+    ],
+    "132": [
+      "resources_js_components_front_servicehero",
+      "resources_js_components_front_servicehero_servicehero"
+    ],
+    "133": [
+      "resources_js_components_front_statsbar",
+      "resources_js_components_front_statsbar_statsbar"
+    ],
+    "134": [
+      "resources_js_components_front_statuschip",
+      "resources_js_components_front_statuschip_statuschip"
+    ],
+    "135": [
+      "resources_js_components_front_successanimation",
+      "resources_js_components_front_successanimation_successanimation"
+    ],
+    "136": [
+      "resources_js_components_front_teamgrid",
+      "resources_js_components_front_teamgrid_teamgrid"
+    ],
+    "137": [
+      "resources_js_components_front_teammembercard",
+      "resources_js_components_front_teammembercard_teammembercard"
+    ],
+    "138": [
+      "resources_js_components_front_techstackbadge",
+      "resources_js_components_front_techstackbadge_techstackbadge"
+    ],
+    "139": [
+      "resources_js_components_front_testimonialquote",
+      "resources_js_components_front_testimonialquote_testimonialquote"
+    ],
+    "140": [
+      "resources_js_components_front_trustsignal",
+      "resources_js_components_front_trustsignal_trustsignal"
+    ],
+    "141": [
+      "resources_js_components_inputerror",
+      "resources_js_components_inputerror_inputerror"
+    ],
+    "142": [
+      "resources_js_components_inputlabel",
+      "resources_js_components_inputlabel_inputlabel"
+    ],
+    "143": [
+      "resources_js_components_modal",
+      "resources_js_components_modal_modal"
+    ],
+    "144": [
+      "resources_js_components_navlink",
+      "resources_js_components_navlink_navlink"
+    ],
+    "145": [
+      "resources_js_components_primarybutton",
+      "resources_js_components_primarybutton_primarybutton"
+    ],
+    "146": [
+      "resources_js_components_responsivenavlink",
+      "resources_js_components_responsivenavlink_responsivenavlink"
+    ],
+    "147": [
+      "resources_js_components_secondarybutton",
+      "resources_js_components_secondarybutton_secondarybutton"
+    ],
+    "148": [
+      "resources_js_components_superadmin_adminlayout",
+      "resources_js_components_superadmin_adminlayout_adminlayout"
+    ],
+    "149": [
+      "resources_js_components_superadmin_adminstatcard",
+      "resources_js_components_superadmin_adminstatcard_adminstatcard"
+    ],
+    "150": [
+      "resources_js_components_superadmin_admintopbar",
+      "resources_js_components_superadmin_admintopbar_admintopbar"
+    ],
+    "151": [
+      "resources_js_components_superadmin_campaignperformancetable",
+      "resources_js_components_superadmin_campaignperformancetable_campaignperformancetable"
+    ],
+    "152": [
+      "resources_js_components_superadmin_landingpageperformancetable",
+      "resources_js_components_superadmin_landingpageperformancetable_landingpageperformancetable"
+    ],
+    "153": [
+      "resources_js_components_superadmin_leadfilterbar",
+      "resources_js_components_superadmin_leadfilterbar_leadfilterbar"
+    ],
+    "154": [
+      "resources_js_components_superadmin_leadheader",
+      "resources_js_components_superadmin_leadheader_leadheader"
+    ],
+    "155": [
+      "resources_js_components_superadmin_leadkanbancard",
+      "resources_js_components_superadmin_leadkanbancard_leadkanbancard"
+    ],
+    "156": [
+      "resources_js_components_superadmin_leadsbysourcechart",
+      "resources_js_components_superadmin_leadsbysourcechart_leadsbysourcechart"
+    ],
+    "157": [
+      "resources_js_components_superadmin_leadsbysourcewidget",
+      "resources_js_components_superadmin_leadsbysourcewidget_leadsbysourcewidget"
+    ],
+    "158": [
+      "resources_js_components_superadmin_quickcontactbuttons",
+      "resources_js_components_superadmin_quickcontactbuttons_quickcontactbuttons"
+    ],
+    "159": [
+      "resources_js_components_superadmin_recentleadsfeed",
+      "resources_js_components_superadmin_recentleadsfeed_recentleadsfeed"
+    ],
+    "160": [
+      "resources_js_components_superadmin_statuschanger",
+      "resources_js_components_superadmin_statuschanger_statuschanger"
+    ],
+    "161": [
+      "resources_js_data_front_privacy",
+      "resources_js_data_front_privacy_privacydoc"
+    ],
+    "162": [
+      "resources_js_data_front_refundpolicy",
+      "resources_js_data_front_refundpolicy_refunddoc"
+    ],
+    "163": [
+      "resources_js_data_front_terms",
+      "resources_js_data_front_terms_termsdoc"
+    ],
+    "164": [
+      "resources_js_layouts_authenticatedlayout",
+      "resources_js_layouts_authenticatedlayout_authenticatedlayout"
+    ],
+    "165": [
+      "resources_js_layouts_guestlayout",
+      "resources_js_layouts_guestlayout_guestlayout"
+    ],
+    "166": [
+      "resources_js_lib_facebookpixel",
+      "resources_js_lib_facebookpixel_trackfacebooklead"
+    ],
+    "167": [
+      "resources_js_lib_usescrollreveal",
+      "resources_js_lib_usescrollreveal_usescrollreveal"
+    ],
+    "168": [
+      "resources_js_lib_utils",
+      "resources_js_lib_utils_cn"
+    ],
+    "169": [
+      "resources_js_pages_auth_confirmpassword",
+      "resources_js_pages_auth_confirmpassword_confirmpassword"
+    ],
+    "170": [
+      "resources_js_pages_auth_forgotpassword",
+      "resources_js_pages_auth_forgotpassword_forgotpassword"
+    ],
+    "171": [
+      "resources_js_pages_auth_login",
+      "resources_js_pages_auth_login_login"
+    ],
+    "172": [
+      "resources_js_pages_auth_register",
+      "resources_js_pages_auth_register_register"
+    ],
+    "173": [
+      "resources_js_pages_auth_resetpassword",
+      "resources_js_pages_auth_resetpassword_resetpassword"
+    ],
+    "174": [
+      "resources_js_pages_auth_verifyemail",
+      "resources_js_pages_auth_verifyemail_verifyemail"
+    ],
+    "175": [
+      "resources_js_pages_dashboard",
+      "resources_js_pages_dashboard_dashboard"
+    ],
+    "176": [
+      "resources_js_pages_front_about",
+      "resources_js_pages_front_about_about"
+    ],
+    "177": [
+      "resources_js_pages_front_blog",
+      "resources_js_pages_front_blog_blog"
+    ],
+    "178": [
+      "resources_js_pages_front_blogshow",
+      "resources_js_pages_front_blogshow_blogshow"
+    ],
+    "179": [
+      "resources_js_pages_front_campaignlanding",
+      "resources_js_pages_front_campaignlanding_campaignlanding"
+    ],
+    "180": [
+      "resources_js_pages_front_careers",
+      "resources_js_pages_front_careers_careers"
+    ],
+    "181": [
+      "resources_js_pages_front_contact",
+      "resources_js_pages_front_contact_contact"
+    ],
+    "182": [
+      "resources_js_pages_front_faq",
+      "resources_js_pages_front_faq_faq"
+    ],
+    "183": [
+      "resources_js_pages_front_home",
+      "resources_js_pages_front_home_home"
+    ],
+    "184": [
+      "resources_js_pages_front_portfolio",
+      "resources_js_pages_front_portfolio_portfolio"
+    ],
+    "185": [
+      "resources_js_pages_front_portfolioshow",
+      "resources_js_pages_front_portfolioshow_portfolioshow"
+    ],
+    "186": [
+      "resources_js_pages_front_privacy",
+      "resources_js_pages_front_privacy_privacy"
+    ],
+    "187": [
+      "resources_js_pages_front_refundpolicy",
+      "resources_js_pages_front_refundpolicy_refundpolicy"
+    ],
+    "188": [
+      "resources_js_pages_front_saas",
+      "resources_js_pages_front_saas_saas"
+    ],
+    "189": [
+      "resources_js_pages_front_saascategory",
+      "resources_js_pages_front_saascategory_saascategory"
+    ],
+    "190": [
+      "resources_js_pages_front_saasshow",
+      "resources_js_pages_front_saasshow_saasshow"
+    ],
+    "191": [
+      "resources_js_pages_front_servicesmobileapps",
+      "resources_js_pages_front_servicesmobileapps_servicesmobileapps"
+    ],
+    "192": [
+      "resources_js_pages_front_servicessaas",
+      "resources_js_pages_front_servicessaas_servicessaas"
+    ],
+    "193": [
+      "resources_js_pages_front_serviceswebapps",
+      "resources_js_pages_front_serviceswebapps_serviceswebapps"
+    ],
+    "194": [
+      "resources_js_pages_front_serviceswebdevelopment",
+      "resources_js_pages_front_serviceswebdevelopment_serviceswebdevelopment"
+    ],
+    "195": [
+      "resources_js_pages_front_terms",
+      "resources_js_pages_front_terms_terms"
+    ],
+    "196": [
+      "resources_js_pages_front_thankyou",
+      "resources_js_pages_front_thankyou_thankyou"
+    ],
+    "197": [
+      "resources_js_pages_superadmin_dashboard",
+      "resources_js_pages_superadmin_dashboard_dashboard"
+    ],
+    "198": [
+      "resources_js_pages_superadmin_leads_show",
+      "resources_js_pages_superadmin_leads_show_leadshow"
+    ],
+    "199": [
+      "resources_js_pages_superadmin_sources_index",
+      "resources_js_pages_superadmin_sources_index_sourcesindex"
+    ],
+    "200": [
+      "resources_js_pages_welcome",
+      "resources_js_pages_welcome_welcome"
+    ],
+    "201": [
+      "tests_pest",
+      "tests_pest_something"
+    ],
+    "202": [
+      "bootstrap_providers"
+    ],
+    "203": [
+      "config_app"
+    ],
+    "204": [
+      "config_auth"
+    ],
+    "205": [
+      "config_cache"
+    ],
+    "206": [
+      "config_database"
+    ],
+    "207": [
+      "config_filesystems"
+    ],
+    "208": [
+      "config_logging"
+    ],
+    "209": [
+      "config_queue"
+    ],
+    "210": [
+      "config_services"
+    ],
+    "211": [
+      "config_session"
+    ],
+    "212": [
+      "public_index"
+    ],
+    "213": [
+      "resources_data_front_blog"
+    ],
+    "214": [
+      "resources_data_front_campaigns"
+    ],
+    "215": [
+      "resources_data_front_portfolio"
+    ],
+    "216": [
+      "resources_data_front_saas"
+    ],
+    "217": [
+      "resources_js_components_textinput"
+    ],
+    "218": [
+      "resources_js_data_front_home_portfolio"
+    ],
+    "219": [
+      "resources_js_ssr"
+    ],
+    "220": [
+      "resources_views_app_blade"
+    ],
+    "221": [
+      "resources_views_emails_lead_received_blade"
+    ],
+    "222": [
+      "tests_feature_auth_registrationtest"
+    ],
+    "223": [
+      "tests_feature_exampletest"
+    ],
+    "224": [
+      "tests_feature_front_abouttest"
+    ],
+    "225": [
+      "tests_feature_front_blogtest"
+    ],
+    "226": [
+      "tests_feature_front_campaignlandingtest"
+    ],
+    "227": [
+      "tests_feature_front_careerstest"
+    ],
+    "228": [
+      "tests_feature_front_faqtest"
+    ],
+    "229": [
+      "tests_feature_front_portfoliopagetest"
+    ],
+    "230": [
+      "tests_feature_front_pricingtest"
+    ],
+    "231": [
+      "tests_feature_front_privacytest"
+    ],
+    "232": [
+      "tests_feature_front_refundpolicytest"
+    ],
+    "233": [
+      "tests_feature_front_saascatalogtest"
+    ],
+    "234": [
+      "tests_feature_front_saascategorytest"
+    ],
+    "235": [
+      "tests_feature_front_saasproductdetailtest"
+    ],
+    "236": [
+      "tests_feature_front_servicesmobileappstest"
+    ],
+    "237": [
+      "tests_feature_front_servicessaastest"
+    ],
+    "238": [
+      "tests_feature_front_serviceswebappstest"
+    ],
+    "239": [
+      "tests_feature_front_serviceswebdevelopmenttest"
+    ],
+    "240": [
+      "tests_feature_front_termstest"
+    ],
+    "241": [
+      "tests_unit_exampletest"
+    ],
+    "242": [
+      "tmp_seed_activities"
+    ],
+    "243": [
+      "tmp_seed_campaigns"
+    ],
+    "244": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.050917336631622345,
+    "1": 0.041666666666666664,
+    "2": 0.07965860597439545,
+    "3": 0.05714285714285714,
+    "4": 0.06451612903225806,
+    "5": 0.09090909090909091,
+    "6": 0.10526315789473684,
+    "7": 0.1323529411764706,
+    "8": 0.18095238095238095,
+    "9": 0.16666666666666666,
+    "10": 0.18181818181818182,
+    "11": 0.2727272727272727,
+    "12": 0.2727272727272727,
+    "13": 0.2,
+    "14": 0.2222222222222222,
+    "15": 0.35714285714285715,
+    "16": 0.2857142857142857,
+    "17": 0.2857142857142857,
+    "18": 0.3333333333333333,
+    "19": 0.3333333333333333,
+    "20": 0.3333333333333333,
+    "21": 0.3333333333333333,
+    "22": 0.3333333333333333,
+    "23": 0.6,
+    "24": 0.4,
+    "25": 0.4,
+    "26": 0.4,
+    "27": 0.6,
+    "28": 0.6666666666666666,
+    "29": 0.5,
+    "30": 0.6666666666666666,
+    "31": 0.5,
+    "32": 0.5,
+    "33": 0.5,
+    "34": 0.6666666666666666,
+    "35": 0.5,
+    "36": 0.5,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 0.6666666666666666,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 0.6666666666666666,
+    "45": 0.6666666666666666,
+    "46": 0.6666666666666666,
+    "47": 0.6666666666666666,
+    "48": 0.6666666666666666,
+    "49": 0.6666666666666666,
+    "50": 0.6666666666666666,
+    "51": 1.0,
+    "52": 0.6666666666666666,
+    "53": 0.6666666666666666,
+    "54": 1.0,
+    "55": 0.6666666666666666,
+    "56": 0.6666666666666666,
+    "57": 0.6666666666666666,
+    "58": 0.6666666666666666,
+    "59": 0.6666666666666666,
+    "60": 0.6666666666666666,
+    "61": 0.6666666666666666,
+    "62": 0.6666666666666666,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 1.0,
+    "66": 0.6666666666666666,
+    "67": 0.6666666666666666,
+    "68": 1.0,
+    "69": 0.6666666666666666,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0,
+    "228": 1.0,
+    "229": 1.0,
+    "230": 1.0,
+    "231": 1.0,
+    "232": 1.0,
+    "233": 1.0,
+    "234": 1.0,
+    "235": 1.0,
+    "236": 1.0,
+    "237": 1.0,
+    "238": 1.0,
+    "239": 1.0,
+    "240": 1.0,
+    "241": 1.0,
+    "242": 1.0,
+    "243": 1.0,
+    "244": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_models_lead_lead",
+      "label": "Lead",
+      "degree": 40
+    },
+    {
+      "id": "app_http_controllers_controller_controller",
+      "label": "Controller",
+      "degree": 16
+    },
+    {
+      "id": "app_http_controllers_superadmin_leadcontroller_leadcontroller",
+      "label": "LeadController",
+      "degree": 14
+    },
+    {
+      "id": "composer_require_dev",
+      "label": "require-dev",
+      "degree": 11
+    },
+    {
+      "id": "app_mail_leadreceived_leadreceived",
+      "label": "LeadReceived",
+      "degree": 9
+    },
+    {
+      "id": "app_models_leadactivity_leadactivity",
+      "label": "LeadActivity",
+      "degree": 8
+    },
+    {
+      "id": "app_http_requests_auth_loginrequest_loginrequest",
+      "label": "LoginRequest",
+      "degree": 7
+    },
+    {
+      "id": "composer_require",
+      "label": "require",
+      "degree": 7
+    },
+    {
+      "id": "composer_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "app_http_controllers_superadmin_sourcecontroller_sourcecontroller",
+      "label": "SourceController",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "LeadReceived",
+      "target": "Lead",
+      "source_files": [
+        "app/Mail/LeadReceived.php",
+        "app/Models/Lead.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "ConfirmablePasswordController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/Auth/ConfirmablePasswordController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "EmailVerificationNotificationController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/Auth/EmailVerificationNotificationController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "EmailVerificationPromptController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/Auth/EmailVerificationPromptController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "PasswordController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/Auth/PasswordController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

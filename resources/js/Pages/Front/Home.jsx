@@ -57,12 +57,10 @@ export default function Home() {
                                 What we build
                             </span>
                             <h2 className="text-[2rem] leading-[1.12] font-semibold tracking-[-0.02em] text-front-ink sm:text-[2.5rem]">
-                                One team. Four kinds of builds.
+                            One team. Four ways we work.
                             </h2>
                             <p className="text-[15.5px] leading-relaxed text-front-slate">
-                                Every project below runs through the same team, from the same
-                                scoping call to the same launch checklist — no handoffs between
-                                agencies.
+                            Same team on every project — same kickoff call, same handover checklist, whether it's a marketing site or a mobile app. Nothing gets handed off to a second agency halfway through.
                             </p>
                         </Reveal>
 

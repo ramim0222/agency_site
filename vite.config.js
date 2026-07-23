@@ -19,4 +19,10 @@ export default defineConfig({
             "@": path.resolve(__dirname, "resources/js"),
         },
     },
+    // OneDrive locks new files under public/images and crashes Vite's watcher (EBUSY).
+    server: {
+        watch: {
+            ignored: ["**/public/images/**"],
+        },
+    },
 });

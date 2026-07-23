@@ -59,6 +59,10 @@ export const hero = {
     ],
     sub: "Scratch it on a napkin, send it our way. We'll turn it into a real product — Laravel and React for the web, React Native for mobile, ready-made SaaS tools for everything else. One team, from first requirement to public launch.",
     primaryCta: { label: "Get a Free Quote", href: "/contact" },
+    background: {
+        src: "/images/hero-bg.jpg",
+        alt: "",
+    },
     visual: {
         src: "/images/hero.jpg",
         alt: "Preview of a client dashboard product built by Kiln, showing charts and account data",
@@ -76,8 +80,8 @@ export const services = [
         icon: "Globe",
         title: "Web Development",
         description:
-            "Marketing sites and content platforms built to load fast, rank well, and hold up after launch day.",
-        stack: ["Laravel", "React", "Tailwind"],
+            "Sites that load fast, hold up under real traffic, and don't fall apart the week after launch. Built for businesses that need a real online presence, not a template with their logo on it.",
+        stack: ["Laravel", "React", "Tailwind", "Next.js"],
         href: "/services/web-development",
     },
     {
@@ -85,8 +89,8 @@ export const services = [
         icon: "LayoutDashboard",
         title: "Web Apps",
         description:
-            "Internal tools and customer-facing dashboards — the operational software your team runs the day on.",
-        stack: ["Laravel", "Inertia", "PostgreSQL"],
+            "Dashboards, internal tools, client portals — the software your team actually opens every morning. We build the boring, important stuff that keeps operations running.",
+        stack: ["Laravel", "React", "PostgreSQL", "MySQL", "Next.js"],
         href: "/services/web-apps",
     },
     {
@@ -94,8 +98,8 @@ export const services = [
         icon: "Smartphone",
         title: "Mobile Apps",
         description:
-            "Native-feeling iOS and Android apps from a single React Native codebase, shipped to both stores.",
-        stack: ["React Native", "Expo", "TypeScript"],
+            "One React Native codebase, shipped to both the App Store and Play Store. Built on the same Laravel backend as the rest of your product, so nothing lives in its own silo.",
+        stack: ["React Native", "Expo", "TypeScript", "Laravel"],
         href: "/services/mobile-apps",
     },
     {
@@ -103,8 +107,8 @@ export const services = [
         icon: "Repeat",
         title: "SaaS Subscriptions",
         description:
-            "Multi-tenant products with billing, plans, and usage limits built in from the first migration.",
-        stack: ["Next.js", "Stripe", "Laravel"],
+            "Ready-made software for the stuff every business needs but shouldn't have to custom-build — invoicing, CRM, POS, and more. Pick a plan, get set up, skip the six-month build.",
+        stack: ["Next.js", "Stripe", "Laravel", "SSLCommerz", "PipraPay"],
         href: "/services/saas",
     },
 ];

@@ -72,6 +72,7 @@ export default function PortfolioCarousel({ projects, eyebrow, title }) {
             gsap.set(track, { x: 0, force3D: true });
             xRef.current = 0;
 
+            let pressed = false;
             let dragging = false;
             let startX = 0;
             let startVal = 0;
@@ -80,30 +81,34 @@ export default function PortfolioCarousel({ projects, eyebrow, title }) {
             const onDown = contextSafe((e) => {
                 if (e.button != null && e.button !== 0) return;
 
-                dragging = true;
+                // Don't capture yet — allow normal Link clicks until drag threshold.
+                pressed = true;
+                dragging = false;
                 dragMovedRef.current = false;
                 pointerId = e.pointerId;
                 startX = e.clientX;
                 startVal = xRef.current;
-                gsap.killTweensOf(track);
-                viewport.classList.add("cursor-grabbing");
-
-                try {
-                    viewport.setPointerCapture(e.pointerId);
-                } catch {
-                    /* ignore */
-                }
             });
 
             const onMove = contextSafe((e) => {
-                if (!dragging || pointerId !== e.pointerId) return;
+                if (!pressed || pointerId !== e.pointerId) return;
 
                 const dx = e.clientX - startX;
-                if (Math.abs(dx) > 6) {
+
+                if (!dragging) {
+                    if (Math.abs(dx) < 8) return;
+                    dragging = true;
                     dragMovedRef.current = true;
-                    e.preventDefault();
+                    gsap.killTweensOf(track);
+                    viewport.classList.add("cursor-grabbing");
+                    try {
+                        viewport.setPointerCapture(e.pointerId);
+                    } catch {
+                        /* ignore */
+                    }
                 }
-                if (!dragMovedRef.current) return;
+
+                e.preventDefault();
 
                 const { min, max } = getBounds();
                 let next = startVal + dx;
@@ -115,7 +120,9 @@ export default function PortfolioCarousel({ projects, eyebrow, title }) {
             });
 
             const onUp = contextSafe((e) => {
-                if (!dragging || pointerId !== e.pointerId) return;
+                if (!pressed || pointerId !== e.pointerId) return;
+                const didDrag = dragging;
+                pressed = false;
                 dragging = false;
                 pointerId = null;
                 viewport.classList.remove("cursor-grabbing");
@@ -125,6 +132,8 @@ export default function PortfolioCarousel({ projects, eyebrow, title }) {
                 } catch {
                     /* ignore */
                 }
+
+                if (!didDrag) return;
 
                 const { min, max } = getBounds();
                 let target = gsap.utils.clamp(min, max, xRef.current);
@@ -136,6 +145,11 @@ export default function PortfolioCarousel({ projects, eyebrow, title }) {
                 }
 
                 goTo(target, true);
+
+                // Block the synthetic click that follows a drag; clear as a fallback.
+                window.setTimeout(() => {
+                    dragMovedRef.current = false;
+                }, 80);
             });
 
             const onClickCapture = contextSafe((e) => {

@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { ArrowUpRight } from "lucide-react";
 import { categoryLabels } from "@/data/front/portfolio";
 
 export default function CaseStudyHeader({ project }) {
@@ -63,6 +64,20 @@ export default function CaseStudyHeader({ project }) {
                 >
                     {project.result}
                 </p>
+
+                {project.link ? (
+                    <div data-case-hero className="mt-7">
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-2 rounded-md border border-front-ember/40 bg-front-ember/15 px-4 py-2.5 text-[13px] font-semibold text-front-ember-soft transition-colors hover:border-front-ember/60 hover:bg-front-ember/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/55"
+                        >
+                            Visit website
+                            <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </a>
+                    </div>
+                ) : null}
 
                 <div
                     data-case-hero

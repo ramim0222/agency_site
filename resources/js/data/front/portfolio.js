@@ -50,48 +50,57 @@ const stackMeta = {
  */
 export const projects = [
     {
-        slug: "harborline-dispatch",
-        key: "harborline",
+        slug: "villagemeatagro",
+        key: "villagemeatagro",
         category: "web_app",
-        industry: "Logistics",
-        client: "Harborline Logistics",
-        title: "Dispatch and fleet tracking platform",
-        result: "Replaced three spreadsheets and a shared inbox with one live dispatch board.",
-        stack: ["Laravel", "React", "PostgreSQL"],
-        year: "2025",
+        industry: "Ecommerce",
+        client: "Village Meat Agro",
+        title: "Ecommerce platform with customer storefront, admin panel, and social media integration",
+        result: "We shipped a full ecommerce storefront alongside an admin panel for managing products, orders, and stock in one place. Customers browse and order fresh chicken and snack products online; staff manage listings, pricing, and order status without touching code. Facebook and Instagram catalogs stay in sync with the storefront automatically.",
+        stack: ["Laravel", "React", "MySQL"],
+        year: "2026",
+        link: "https://villagemeatagro.com",
         image: {
-            src: "https://placehold.co/800x520?text=Harborline+Dispatch+Dashboard",
-            alt: "Screenshot of the Harborline Logistics dispatch dashboard with live fleet map",
+            src: "/images/portfolio/villagemeatagro/front.png",
+            alt: "Village Meat Agro storefront homepage showing featured products",
         },
         challenge:
-            "Harborline ran dispatch across three shared spreadsheets, a WhatsApp group, and a shared inbox. Drivers called for updates; planners lost track of who was already assigned. Peak season meant missed pickups and angry warehouse managers.",
+            "Village Meat Agro sold fresh chicken products and snacks primarily through Facebook and word of mouth, with no real online storefront. Orders were tracked manually, product listings lived only in social posts, and there was no single place to manage stock, pricing, or order status as the customer base grew.",
         solution:
-            "We built a live dispatch board with driver assignments, route status, and exception flags in one place. Planners drag jobs onto drivers; the board updates as drivers check in from the road. Exceptions surface before a customer calls.",
+            "We built a full ecommerce website with a customer-facing storefront and a separate admin panel for the business side. Customers can browse products, add to cart, and check out online. The admin panel handles product and inventory management, order tracking, and pricing updates, and pushes product listings straight to Facebook and Instagram so the social pages and the website never fall out of sync.",
         gallery: [
             {
-                src: "https://placehold.co/960x600?text=Harborline+Live+Board",
-                alt: "Harborline live dispatch board showing assigned and open jobs",
+                src: "/images/portfolio/villagemeatagro/catalogue.png",
+                alt: "Product catalog view on the Village Meat Agro storefront",
             },
             {
-                src: "https://placehold.co/960x600?text=Harborline+Driver+View",
-                alt: "Mobile driver view for Harborline with today's stops and status controls",
+                src: "/images/portfolio/villagemeatagro/product.png",
+                alt: "Product detail page for a Village Meat Agro listing",
             },
             {
-                src: "https://placehold.co/960x600?text=Harborline+Exception+Queue",
-                alt: "Exception queue highlighting delayed and unassigned Harborline jobs",
+                src: "/images/portfolio/villagemeatagro/admin.png",
+                alt: "Admin panel overview for Village Meat Agro",
+            },
+            {
+                src: "/images/portfolio/villagemeatagro/order.png",
+                alt: "Admin order management showing incoming orders",
+            },
+            {
+                src: "/images/portfolio/villagemeatagro/user.png",
+                alt: "Admin user management screen for Village Meat Agro",
             },
         ],
         metrics: [
-            { value: "3→1", label: "Tools collapsed into one board" },
-            { value: "40%", label: "Fewer missed pickup calls" },
-            { value: "6 wks", label: "From kickoff to first live week" },
+            { value: "1", label: "Storefront replacing manual Facebook orders" },
+            { value: "2", label: "Social channels synced automatically" },
+            { value: "Live", label: "Real-time stock and order tracking" },
         ],
         testimonial: {
             quote:
-                "They asked harder questions about our dispatch process than our own ops team did — the platform they built actually matches how we work.",
-            name: "Priya Nandakumar",
-            role: "Operations Lead",
-            company: "Harborline Logistics",
+                "We used to manage orders through Facebook comments and messages. Now everything — stock, pricing, orders — lives in one place, and our social pages update on their own.",
+            name: "",
+            role: "",
+            company: "Village Meat Agro",
         },
     },
     {

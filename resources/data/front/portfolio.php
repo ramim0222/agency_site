@@ -5,7 +5,7 @@
  * Full case-study copy lives in resources/js/data/front/portfolio.js — keep slugs in sync.
  */
 return [
-    ['slug' => 'harborline-dispatch'],
+    ['slug' => 'villagemeatagro'],
     ['slug' => 'fernway-booking'],
     ['slug' => 'ledger-cove-billing'],
     ['slug' => 'northgrain-ordering'],

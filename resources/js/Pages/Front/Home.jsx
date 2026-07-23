@@ -6,6 +6,7 @@ import Reveal from "@/Components/Front/Reveal";
 import ServiceCard from "@/Components/Front/ServiceCard";
 import PortfolioCarousel from "@/Components/Front/PortfolioCarousel";
 import TechStackBadge from "@/Components/Front/TechStackBadge";
+import Marquee from "@/Components/Front/Marquee";
 import TestimonialCarousel from "@/Components/Front/TestimonialCarousel";
 import StatsBar from "@/Components/Front/StatsBar";
 import BlogPreviewCard from "@/Components/Front/BlogPreviewCard";
@@ -117,13 +118,16 @@ export default function Home() {
                             Built with
                         </Reveal>
 
-                        <div className="front-scrollbar-hide mt-8 overflow-x-hidden">
-                            <div className="flex w-max gap-4 front-marquee-track">
-                                {[...techStack, ...techStack].map((tech, i) => (
-                                    <TechStackBadge key={`${tech.key}-${i}`} tech={tech} />
-                                ))}
-                            </div>
-                        </div>
+                        <Marquee className="mt-8">
+                            {[...Array(4)].flatMap((_, copy) =>
+                                techStack.map((tech) => (
+                                    <TechStackBadge
+                                        key={`${tech.key}-${copy}`}
+                                        tech={tech}
+                                    />
+                                ))
+                            )}
+                        </Marquee>
 
                         <div className="mt-24 grid grid-cols-1 gap-14 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
                             <Reveal className="flex flex-col gap-4">

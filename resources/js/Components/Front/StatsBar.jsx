@@ -34,11 +34,11 @@ export default function StatsBar({ stats = [], variant = "paper" }) {
 
                 gsap.to(counter, {
                     value: target,
-                    duration: 1.6,
+                    duration: 1.0,
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 90%",
+                        start: "top 96%",
                         once: true,
                     },
                     onUpdate: () => {

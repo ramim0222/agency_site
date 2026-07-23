@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
  */
 export default function Reveal({
     as: Tag = "div",
-    y = 24,
-    duration = 0.9,
+    y = 16,
+    duration = 0.55,
     delay = 0,
-    start = "top 88%",
+    start = "top 95%",
     className,
     children,
     ...props
@@ -28,6 +28,10 @@ export default function Reveal({
                 return;
             }
 
+            // useGSAP runs via useLayoutEffect (before paint), so gsap.set here
+            // hides the element before the browser draws the first frame — no FOUC.
+            // We let GSAP own the opacity inline style so React re-renders don't
+            // clobber it (never put opacity in the JSX style prop on this element).
             gsap.set(ref.current, { opacity: 0, y });
             gsap.to(ref.current, {
                 opacity: 1,

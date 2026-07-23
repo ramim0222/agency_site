@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Head } from "@inertiajs/react";
 import Header from "@/Components/Front/Header";
 import Hero from "@/Components/Front/Hero";
@@ -11,6 +12,7 @@ import BlogPreviewCard from "@/Components/Front/BlogPreviewCard";
 import CtaBand from "@/Components/Front/CtaBand";
 import Footer from "@/Components/Front/Footer";
 import { useScrollReveal } from "@/lib/useScrollReveal";
+import { ScrollTrigger } from "@/lib/motion";
 import {
     blogPosts,
     finalCta,
@@ -25,6 +27,34 @@ export default function Home() {
     const servicesRef = useScrollReveal("[data-reveal]");
     const portfolioRevealRef = useScrollReveal("[data-reveal]");
     const blogRef = useScrollReveal("[data-reveal]");
+
+    // ScrollTrigger measures element positions during its own init (useLayoutEffect).
+    // If images or web-fonts haven't loaded yet, those measurements are wrong and
+    // some triggers never fire — elements stay invisible forever.
+    //
+    // Fix: refresh ScrollTrigger at several points so it always has accurate
+    // positions.  This replicates what opening DevTools does (a viewport resize
+    // automatically triggers a refresh internally).
+    useEffect(() => {
+        // Tick 1 — 150 ms: after all useLayoutEffect / useGSAP contexts have
+        // finished setting up their triggers on this paint cycle.
+        const t1 = setTimeout(() => ScrollTrigger.refresh(), 150);
+
+        // Tick 2 — 500 ms: a second pass for any async font/image shifts that
+        // settle in the first half-second.
+        const t2 = setTimeout(() => ScrollTrigger.refresh(), 500);
+
+        // Tick 3 — window.load: final pass once every resource (hero image, etc.)
+        // has finished loading and the full page height is known.
+        const onLoad = () => setTimeout(() => ScrollTrigger.refresh(), 100);
+        window.addEventListener("load", onLoad, { once: true });
+
+        return () => {
+            clearTimeout(t1);
+            clearTimeout(t2);
+            window.removeEventListener("load", onLoad);
+        };
+    }, []);
 
     return (
         <div className="front bg-front-graphite">
@@ -109,12 +139,12 @@ export default function Home() {
                                 </p>
                             </Reveal>
 
-                            <Reveal delay={0.1}>
+                            <Reveal>
                                 <TestimonialCarousel testimonials={testimonials} />
                             </Reveal>
                         </div>
 
-                        <Reveal delay={0.05} className="mt-16">
+                        <Reveal className="mt-16">
                             <StatsBar stats={stats} />
                         </Reveal>
                     </div>

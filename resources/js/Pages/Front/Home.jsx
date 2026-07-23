@@ -1,11 +1,9 @@
-import { useRef } from "react";
 import { Head } from "@inertiajs/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/Components/Front/Header";
 import Hero from "@/Components/Front/Hero";
 import Reveal from "@/Components/Front/Reveal";
 import ServiceCard from "@/Components/Front/ServiceCard";
-import PortfolioCard from "@/Components/Front/PortfolioCard";
+import PortfolioCarousel from "@/Components/Front/PortfolioCarousel";
 import TechStackBadge from "@/Components/Front/TechStackBadge";
 import TestimonialCarousel from "@/Components/Front/TestimonialCarousel";
 import StatsBar from "@/Components/Front/StatsBar";
@@ -25,15 +23,8 @@ import {
 
 export default function Home() {
     const servicesRef = useScrollReveal("[data-reveal]");
-    const portfolioRef = useScrollReveal("[data-reveal]");
+    const portfolioRevealRef = useScrollReveal("[data-reveal]");
     const blogRef = useScrollReveal("[data-reveal]");
-    const scrollerRef = useRef(null);
-
-    const scrollPortfolio = (dir) => {
-        const el = scrollerRef.current;
-        if (!el) return;
-        el.scrollBy({ left: dir * 380, behavior: "smooth" });
-    };
 
     return (
         <div className="front bg-front-graphite">
@@ -76,49 +67,16 @@ export default function Home() {
                 </section>
 
                 {/* Portfolio --------------------------------------------------- */}
-                <section className="bg-front-graphite py-24 lg:py-28">
+                <section
+                    ref={portfolioRevealRef}
+                    className="bg-front-graphite py-24 lg:py-28"
+                >
                     <div className="front-container">
-                        <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                            <div className="flex flex-col gap-4 lg:max-w-[46ch]">
-                                <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-front-ember-soft">
-                                    Selected work
-                                </span>
-                                <h2 className="text-[2rem] leading-[1.12] font-semibold tracking-[-0.02em] text-white sm:text-[2.5rem]">
-                                    Products we've shipped for real teams.
-                                </h2>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => scrollPortfolio(-1)}
-                                    aria-label="Scroll portfolio left"
-                                    className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
-                                >
-                                    <ChevronLeft className="size-4" />
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => scrollPortfolio(1)}
-                                    aria-label="Scroll portfolio right"
-                                    className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/60"
-                                >
-                                    <ChevronRight className="size-4" />
-                                </button>
-                            </div>
-                        </Reveal>
-
-                        <div
-                            ref={(node) => {
-                                scrollerRef.current = node;
-                                portfolioRef.current = node;
-                            }}
-                            className="front-scrollbar-hide mt-12 flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory"
-                        >
-                            {portfolio.map((project) => (
-                                <PortfolioCard key={project.key} project={project} />
-                            ))}
-                        </div>
+                        <PortfolioCarousel
+                            projects={portfolio}
+                            eyebrow="Selected work"
+                            title="Products we've shipped for real teams."
+                        />
                     </div>
                 </section>
 

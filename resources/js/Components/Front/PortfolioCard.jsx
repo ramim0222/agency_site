@@ -18,14 +18,17 @@ export default function PortfolioCard({
 
     const shell =
         variant === "grid"
-            ? "flex w-full flex-col"
-            : "flex w-[320px] shrink-0 snap-start flex-col sm:w-[380px]";
+            ? "flex w-full min-w-0 flex-col"
+            : // Width set by PortfolioCarousel: exactly 1 / 2 / 3 cards in view
+              "flex w-[var(--portfolio-card-w,100%)] shrink-0 flex-col";
 
     return (
         <Link
             href={href}
             data-reveal
             data-portfolio-card
+            draggable={false}
+            onDragStart={(e) => e.preventDefault()}
             className={`${shell} group overflow-hidden rounded-2xl border border-white/10 bg-front-panel transition-all duration-300 hover:border-white/20 hover:bg-front-panel-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-front-ember/50 ${className}`}
         >
             <div className="relative overflow-hidden">
@@ -33,9 +36,14 @@ export default function PortfolioCard({
                     src={project.image.src}
                     alt={project.image.alt}
                     width={variant === "grid" ? 800 : 640}
-                    height={variant === "grid" ? 520 : 420}
-                    className="aspect-[800/520] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    height={variant === "grid" ? 520 : 360}
+                    className={
+                        variant === "grid"
+                            ? "aspect-[800/520] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                            : "aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    }
                     loading="lazy"
+                    draggable={false}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-front-panel to-transparent" />
                 {category ? (
@@ -45,36 +53,36 @@ export default function PortfolioCard({
                 ) : null}
             </div>
 
-            <div className="flex flex-1 flex-col p-6">
-                <div className="flex items-baseline justify-between gap-3">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-front-ember-soft">
+            <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+                <div className="flex min-w-0 items-baseline justify-between gap-3">
+                    <span className="min-w-0 truncate font-mono text-[11px] uppercase tracking-[0.1em] text-front-ember-soft">
                         {project.client}
                     </span>
                     {project.year ? (
-                        <span className="font-mono text-[11px] tabular-nums text-front-steel-dim">
+                        <span className="shrink-0 font-mono text-[11px] tabular-nums text-front-steel-dim">
                             {project.year}
                         </span>
                     ) : null}
                 </div>
-                <h3 className="mt-2 text-[17px] font-semibold tracking-[-0.01em] text-white">
+                <h3 className="mt-2 line-clamp-2 text-[16px] font-semibold tracking-[-0.01em] text-white sm:text-[17px]">
                     {project.title}
                 </h3>
-                <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-front-steel">
+                <p className="mt-2.5 line-clamp-3 text-[13.5px] leading-relaxed text-front-steel sm:text-[14px]">
                     {project.result}
                 </p>
 
-                <div className="mt-5 flex flex-wrap items-center gap-1.5">
+                <div className="mt-4 flex flex-wrap items-center gap-1.5">
                     {project.stack.map((item) => (
                         <span
                             key={item}
-                            className="rounded border border-white/10 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.04em] text-white/50"
+                            className="rounded border border-white/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.04em] text-white/50"
                         >
                             {item}
                         </span>
                     ))}
                 </div>
 
-                <div className="mt-5 flex items-center gap-1.5 text-[13px] font-semibold text-white">
+                <div className="mt-4 flex items-center gap-1.5 text-[13px] font-semibold text-white">
                     Read the case study
                     <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>

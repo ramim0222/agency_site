@@ -143,7 +143,7 @@ export default function Hero() {
                     <div className="mt-11 flex flex-wrap items-center gap-2.5 border-t border-white/8 pt-6">
                         {hero.statusChips.map((chip) => (
                             <span key={chip.label} data-hero-chips>
-                                <StatusChip label={chip.label} state={chip.state} />
+                                <StatusChip label={chip.label} />
                             </span>
                         ))}
                     </div>
@@ -157,7 +157,7 @@ export default function Hero() {
                                 <span className="size-2 rounded-full bg-white/15" />
                                 <span className="size-2 rounded-full bg-white/15" />
                                 <span className="ml-2 font-mono text-[11px] uppercase tracking-[0.1em] text-white/40">
-                                    live preview
+                                You think it, We ship it
                                 </span>
                             </div>
                             <img
@@ -191,7 +191,7 @@ function HeadlineToken({ token }) {
 
     if (token.type === "serif") {
         return (
-            <em className="font-serif text-[1.08em] font-normal not-italic text-front-ember-soft italic">
+            <em className="font-serif text-[1.08em] font-normal not-italic text-front-ember-soft ">
                 {token.value}
             </em>
         );

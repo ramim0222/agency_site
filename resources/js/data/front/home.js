@@ -43,30 +43,30 @@ export const primaryNav = [
 ];
 
 export const hero = {
-    eyebrow: "Product engineering studio",
+    eyebrow: "SOFTWARE AGENCY",
     headline: [
         { type: "text", value: "We build" },
-        {
-            type: "image",
-            src: "https://placehold.co/72x44?text=UI",
-            alt: "Close-up of a shipped product interface",
-        },
+        // {
+        //     type: "image",
+        //     src: "https://placehold.co/72x44?text=UI",
+        //     alt: "Close-up of a shipped product interface",
+        // },
         { type: "text", value: "software" },
         { type: "break" },
         { type: "text", value: "that businesses" },
         { type: "break" },
         { type: "serif", value: "actually run on." },
     ],
-    sub: "Laravel, React, and native mobile builds for teams who need working product, not another slide deck. One accountable team, from the first commit to the public launch.",
+    sub: "Scratch it on a napkin, send it our way. We'll turn it into a real product — Laravel and React for the web, React Native for mobile, ready-made SaaS tools for everything else. One team, from first requirement to public launch.",
     primaryCta: { label: "Get a Free Quote", href: "/contact" },
     visual: {
-        src: "https://placehold.co/960x680?text=Product+Dashboard+Preview",
+        src: "/images/hero.jpg",
         alt: "Preview of a client dashboard product built by Kiln, showing charts and account data",
     },
     statusChips: [
-        { label: "Web Development", state: "active" },
-        { label: "Mobile Apps", state: "active" },
-        { label: "SaaS Billing", state: "queued" },
+        { label: "Web Development" },
+        { label: "Mobile Apps" },
+        { label: "SaaS Billing" },
     ],
 };
 
